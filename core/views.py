@@ -10,3 +10,6 @@ def signup_view(request):
 
 def otp_view(request):
     return render(request, 'core/otp.html')
+
+def renter_dashboard_view(request):
+    return render(request, 'core/renter_dashboard.html')

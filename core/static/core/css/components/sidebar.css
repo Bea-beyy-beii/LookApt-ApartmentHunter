@@ -1,0 +1,269 @@
+/* =========================================================
+   SHARED SIDEBAR
+   Reusable across renter / landlord / admin dashboards
+========================================================= */
+
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    flex-shrink: 0;
+
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 34px 24px 28px;
+
+    background: #fffaf0;
+    border-right: 1px solid rgba(32, 58, 104, 0.08);
+}
+
+
+/* =========================================================
+   SIDEBAR BRAND
+========================================================= */
+
+.sidebar .brand {
+    display: flex;
+    align-items: center;
+
+    width: fit-content;
+
+    margin: 0 12px 54px;
+
+    text-decoration: none;
+}
+
+.sidebar .brand-logo {
+    width: 60px;
+    height: 58px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    margin-left: -7px;
+}
+
+.sidebar-brand-text {
+    margin-left: 2px;
+}
+
+.sidebar .brand-name {
+    font-size: 32px;
+    letter-spacing: -1.5px;
+    line-height: 1;
+}
+
+.sidebar .brand-tagline {
+    margin-top: 5px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    flex: 1;
+    overflow-y: auto;
+}
+
+.sidebar-link {
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 0 20px;
+
+    border-radius: var(--radius-md);
+
+    color: var(--text-primary);
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sidebar-link:hover {
+    background: rgba(32, 58, 104, 0.06);
+}
+
+.sidebar-link.active {
+    color: var(--white);
+
+    background:
+        linear-gradient(
+            105deg,
+            var(--navy),
+            #59677b
+        );
+
+    box-shadow: 0 8px 18px rgba(32, 58, 104, 0.18),
+                0 4px 18px rgba(245, 185, 76, 0.08);
+}
+
+.sidebar-icon {
+    width: 25px;
+    height: 25px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+}
+
+.sidebar-icon svg {
+    width: 23px;
+    height: 23px;
+
+    stroke-width: 1.8;
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.sidebar-logout {
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   COLLAPSED SIDEBAR
+   Optional class for future dashboards
+========================================================= */
+
+.sidebar--collapsed {
+    width: 82px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.sidebar--collapsed .brand {
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.sidebar--collapsed .sidebar-brand-text,
+.sidebar--collapsed .sidebar-label {
+    display: none;
+}
+
+.sidebar--collapsed .sidebar-link {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1250px) {
+
+    .sidebar {
+        width: 255px;
+    }
+
+}
+
+@media (max-width: 950px) {
+
+    .sidebar {
+        width: 82px;
+
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .sidebar .brand {
+        justify-content: center;
+
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-brand-text,
+    .sidebar-label {
+        display: none;
+    }
+
+    .sidebar-link {
+        justify-content: center;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        height: 70px;
+
+        flex-direction: row;
+        align-items: center;
+
+        padding: 8px 14px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    .sidebar .brand {
+        margin: 0;
+    }
+
+    .sidebar .brand-logo {
+        width: 50px;
+        height: 48px;
+    }
+
+    .sidebar-brand-text {
+        display: none;
+    }
+
+    .sidebar-nav {
+        margin-left: auto;
+
+        flex-direction: row;
+        gap: 4px;
+    }
+
+    .sidebar-link,
+    .sidebar-link.active {
+        width: 44px;
+        min-height: 46px;
+
+        padding: 0;
+    }
+
+    .sidebar-logout {
+        margin-top: 0;
+    }
+
+}
