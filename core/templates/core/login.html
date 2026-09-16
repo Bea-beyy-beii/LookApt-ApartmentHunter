@@ -1,0 +1,235 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LookApt — Log In</title>
+
+
+    <!-- Base CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/base/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/base/colors.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/base/typography.css' %}">
+
+
+    <!-- Component CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/components/branding.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/links.css' %}">
+
+
+    <!-- Page CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/pages/login.css' %}">
+
+</head>
+
+
+<body
+    class="login-page"
+    style="--login-background: url({% static 'core/images/noon.png' %});"
+>
+
+
+    <main class="login-card">
+
+
+        <!-- Branding -->
+
+        <header class="branding">
+
+            <a href="#" class="brand">
+
+                <img
+                    src="{% static 'core/images/logo2.png' %}"
+                    alt="LookApt"
+                    class="brand-logo"
+                >
+
+                <h2 class="brand-name">
+                    Look<span>Apt</span>
+                </h2>
+
+            </a>
+
+            <p class="brand-tagline">
+                Your next home, <span>in a tap.</span>
+            </p>
+
+        </header>
+
+
+        <!-- Login Content -->
+
+        <section class="login-content">
+
+            <h1 class="login-title">
+                Welcome back
+            </h1>
+
+            <p class="login-subtitle">
+                Log in to continue finding your next home.
+            </p>
+
+
+            <!-- Login Form -->
+
+            <form
+                method="POST"
+                action=""
+                class="login-form"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- Username -->
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            👤
+                        </span>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Forgot Password -->
+
+                <a
+                    href="#"
+                    class="forgot-password"
+                >
+                    Forgot password?
+                </a>
+
+
+                <!-- Login Button -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary login-button"
+                >
+                    LOG IN
+                </button>
+
+            </form>
+
+
+            <!-- Divider -->
+
+            <div class="login-divider">
+                <span>or</span>
+            </div>
+
+
+            <!-- Google Login -->
+
+            <button
+                type="button"
+                class="btn btn-google google-button"
+            >
+
+                <span
+                    class="google-icon"
+                    aria-hidden="true"
+                >
+                    G
+                </span>
+
+                Continue with Google
+
+            </button>
+
+
+            <!-- Sign Up -->
+
+            <p class="signup-text">
+
+                Don't have an account?
+
+                <a href="{% url 'signup' %}">
+                    Sign up
+                </a>
+
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="{% static 'js/components/password-toggle.js' %}"></script>
+
+</body>
+
+</html>

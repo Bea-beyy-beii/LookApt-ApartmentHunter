@@ -1,0 +1,255 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LookApt — OTP Verification</title>
+
+
+    <!-- Base CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/base/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/base/colors.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/base/typography.css' %}">
+
+
+    <!-- Component CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/components/branding.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/links.css' %}">
+
+
+    <!-- Page CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/pages/login.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/pages/signup.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/pages/otp.css' %}">
+
+</head>
+
+
+<body
+    class="signup-page"
+    style="--login-background: url({% static 'core/images/noon.png' %});"
+>
+
+
+    <main class="otp-card">
+
+
+        <!-- Branding -->
+
+        <header class="branding">
+
+            <a href="#" class="brand">
+
+                <img
+                    src="{% static 'core/images/logo2.png' %}"
+                    alt="LookApt"
+                    class="brand-logo"
+                >
+
+                <h2 class="brand-name">
+                    Look<span>Apt</span>
+                </h2>
+
+            </a>
+
+            <p class="brand-tagline">
+                Your next home, <span>in a tap.</span>
+            </p>
+
+        </header>
+
+
+        <!-- OTP Content -->
+
+        <section class="otp-content">
+
+            <h1 class="otp-title">
+                OTP VERIFICATION
+            </h1>
+
+
+            <!-- Divider -->
+
+            <div class="otp-divider">
+
+                <span class="otp-divider-icon">
+                    ⌂
+                </span>
+
+            </div>
+
+
+            <p class="otp-subtitle">
+
+                Please enter the OTP (One-Time Password)
+                sent to <strong>09** *** ****</strong>
+                to finish setting up your account.
+
+            </p>
+
+
+            <!-- Timer -->
+
+            <div class="timer">
+
+                <span
+                    class="timer-icon"
+                    aria-hidden="true"
+                >
+                    ◷
+                </span>
+
+                <span>
+                    Remaining Time :
+                    <strong id="timer">00:59s</strong>
+                </span>
+
+            </div>
+
+
+            <!-- OTP Form -->
+
+            <form
+                method="POST"
+                action=""
+                id="otpForm"
+            >
+
+                {% csrf_token %}
+
+
+                <div class="otp-inputs">
+
+
+                    <input
+                        type="text"
+                        id="otp_1"
+                        name="otp_1"
+                        maxlength="1"
+                        inputmode="numeric"
+                        pattern="[0-9]"
+                        autocomplete="one-time-code"
+                        autofocus
+                        required
+                    >
+
+
+                    <input
+                        type="text"
+                        id="otp_2"
+                        name="otp_2"
+                        maxlength="1"
+                        inputmode="numeric"
+                        pattern="[0-9]"
+                        required
+                    >
+
+
+                    <input
+                        type="text"
+                        id="otp_3"
+                        name="otp_3"
+                        maxlength="1"
+                        inputmode="numeric"
+                        pattern="[0-9]"
+                        required
+                    >
+
+
+                    <input
+                        type="text"
+                        id="otp_4"
+                        name="otp_4"
+                        maxlength="1"
+                        inputmode="numeric"
+                        pattern="[0-9]"
+                        required
+                    >
+
+
+                    <input
+                        type="text"
+                        id="otp_5"
+                        name="otp_5"
+                        maxlength="1"
+                        inputmode="numeric"
+                        pattern="[0-9]"
+                        required
+                    >
+
+
+                    <input
+                        type="text"
+                        id="otp_6"
+                        name="otp_6"
+                        maxlength="1"
+                        inputmode="numeric"
+                        pattern="[0-9]"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Verify -->
+
+                <button
+                    type="submit"
+                    class="btn-verify"
+                    id="verifyButton"
+                >
+                    VERIFY
+                </button>
+
+            </form>
+
+
+            <!-- OTP Options -->
+
+            <div class="otp-options">
+
+                <p>
+                    Didn't receive the code?
+                    <a href="#" id="resendLink">
+                        Resend
+                    </a>
+                </p>
+
+
+                <a
+                    href="#"
+                    class="email-link"
+                >
+
+                    <span aria-hidden="true">
+                        ✉
+                    </span>
+
+                    Send via Email instead
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="{% static 'core/js/otp.js' %}"></script>
+
+</body>
+
+</html>

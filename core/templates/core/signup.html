@@ -1,0 +1,424 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LookApt — Sign Up</title>
+
+
+    <!-- Base CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/base/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/base/colors.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/base/typography.css' %}">
+
+
+    <!-- Component CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/components/branding.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/links.css' %}">
+
+
+    <!-- Page CSS -->
+
+    <link rel="stylesheet" href="{% static 'core/css/pages/login.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/pages/signup.css' %}">
+
+</head>
+
+
+<body
+    class="signup-page"
+    style="--login-background: url({% static 'core/images/noon.png' %});"
+>
+
+
+    <main class="login-card">
+
+
+        <!-- Branding -->
+
+        <header class="branding">
+
+            <a href="#" class="brand">
+
+                <img
+                    src="{% static 'core/images/logo2.png' %}"
+                    alt="LookApt"
+                    class="brand-logo"
+                >
+
+                <h2 class="brand-name">
+                    Look<span>Apt</span>
+                </h2>
+
+            </a>
+
+            <p class="brand-tagline">
+                Your next home, <span>in a tap.</span>
+            </p>
+
+        </header>
+
+
+        <!-- Sign Up Content -->
+
+        <section class="signup-content">
+
+            <h1 class="signup-title">
+                Create your LookApt account
+            </h1>
+
+            <p class="signup-subtitle">
+                A step closer towards finding your next home...
+            </p>
+
+
+            <!-- Sign Up Form -->
+
+            <form
+                method="POST"
+                action=""
+                class="login-form"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- First Name -->
+
+                <div class="form-group">
+
+                    <label for="firstname">
+                        First Name
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            👤
+                        </span>
+
+                        <input
+                            type="text"
+                            id="firstname"
+                            name="firstname"
+                            placeholder="First Name"
+                            autocomplete="given-name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Last Name -->
+
+                <div class="form-group">
+
+                    <label for="lastname">
+                        Last Name
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            👤
+                        </span>
+
+                        <input
+                            type="text"
+                            id="lastname"
+                            name="lastname"
+                            placeholder="Last Name"
+                            autocomplete="family-name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Phone Number -->
+
+                <div class="form-group">
+
+                    <label for="phone_number">
+                        Phone Number
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            📱
+                        </span>
+
+                        <input
+                            type="tel"
+                            id="phone_number"
+                            name="phone_number"
+                            placeholder="09XX XXX XXXX"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            ✉
+                        </span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Sex -->
+
+                <div class="form-group">
+
+                    <label for="sex">
+                        Sex
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            ⚧
+                        </span>
+
+                        <select
+                            id="sex"
+                            name="sex"
+                            required
+                        >
+
+                            <option
+                                value=""
+                                disabled
+                                selected
+                            >
+                                Select Sex
+                            </option>
+
+                            <option value="female">
+                                Female
+                            </option>
+
+                            <option value="male">
+                                Male
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Role -->
+
+                <div class="form-group">
+
+                    <label for="role">
+                        Role
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            🏷️
+                        </span>
+
+                        <select
+                            id="role"
+                            name="role"
+                            required
+                        >
+
+                            <option
+                                value=""
+                                disabled
+                                selected
+                            >
+                                Select Role
+                            </option>
+
+                            <option value="tenant">
+                                Renter
+                            </option>
+
+                            <option value="landlord">
+                                Landlord
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    <label for="confirm_password">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span
+                            class="input-icon"
+                            aria-hidden="true"
+                        >
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="confirm_password"
+                            name="confirm_password"
+                            placeholder="Confirm Password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Sign Up Button -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary login-button"
+                >
+                    SIGN UP
+                </button>
+
+            </form>
+
+
+            <!-- Log In -->
+
+            <p class="signup-text">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}">
+                    Log in
+                </a>
+
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="{% static 'js/components/password-toggle.js' %}"></script>
+
+</body>
+
+</html>

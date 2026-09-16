@@ -1,0 +1,17 @@
+a {
+    color: var(--navy);
+}
+
+.forgot-password,
+.signup-text a {
+    color: var(--navy);
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.forgot-password:hover,
+.signup-text a:hover {
+    text-decoration: underline;
+}

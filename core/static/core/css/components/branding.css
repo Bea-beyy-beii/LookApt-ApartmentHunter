@@ -1,0 +1,232 @@
+/* =========================================================
+   LOOKAPT BRANDING
+   Logo + App Name + Optional Tagline
+
+   Shared across:
+   - Login
+   - Signup
+   - OTP
+   - Dashboard
+   - Sidebar
+   - Future pages
+========================================================= */
+
+
+/* =========================================================
+   BRAND
+   Main logo + name wrapper
+========================================================= */
+
+.brand {
+
+    display: inline-flex;
+    align-items: center;
+
+    width: fit-content;
+
+    text-decoration: none;
+
+    color: var(--navy);
+
+    line-height: 1;
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.brand-logo {
+
+    width: 100px;
+    height: 80px;
+
+    object-fit: contain;
+
+    display: block;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =========================================================
+   APP NAME
+========================================================= */
+
+.brand-name {
+
+    margin: 0;
+
+    font-family: var(--font-heading);
+
+    font-size: 72px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -1px;
+
+    color: var(--navy);
+
+}
+
+
+.brand-name span {
+
+    color: var(--gold);
+
+}
+
+
+/* =========================================================
+   OPTIONAL TAGLINE
+========================================================= */
+
+.brand-tagline {
+
+    margin: 5px 0 0;
+
+    font-family: var(--font-tagline);
+
+    font-size: 18px;
+
+    line-height: 1.2;
+
+    color: var(--text-secondary);
+
+}
+
+
+.brand-tagline span {
+
+    color: var(--gold);
+
+}
+
+
+/* =========================================================
+   BRANDING BLOCK
+   Use this when the tagline is included.
+========================================================= */
+
+.branding {
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    width: fit-content;
+
+}
+
+
+/* =========================================================
+   BRAND ROW
+   Logo + name
+========================================================= */
+
+.brand-row {
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+}
+
+
+/* =========================================================
+   COMPACT VERSION
+   Useful for dashboards / sidebars
+========================================================= */
+
+.brand--compact .brand-logo {
+
+    width: 38px;
+    height: 38px;
+
+}
+
+
+.brand--compact .brand-name {
+
+    font-size: 24px;
+
+    letter-spacing: -0.7px;
+
+}
+
+
+.brand--compact .brand-tagline {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   SMALL VERSION
+   Useful for tight navigation areas
+========================================================= */
+
+.brand--small .brand-logo {
+
+    width: 32px;
+    height: 32px;
+
+}
+
+
+.brand--small .brand-name {
+
+    font-size: 21px;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+/* =========================================================
+   LOGO-ONLY VERSION
+   Useful for collapsed sidebar
+========================================================= */
+
+.brand--logo-only .brand-name,
+.brand--logo-only .brand-tagline {
+
+    display: none;
+
+}
+
+
+.brand--logo-only .brand-logo {
+
+    width: 42px;
+    height: 42px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .brand-logo {
+
+        width: 44px;
+        height: 44px;
+
+    }
+
+    .brand-name {
+
+        font-size: 27px;
+
+    }
+
+}
