@@ -44,6 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    "core.core_accounts",
+    "core.core_renters",
+    "core.core_landlords",
+    "core.core_listings",
+    "core.core_messaging",
+    "core.core_verification",
+    "core.core_admin",
 ]
 
 MIDDLEWARE = [
@@ -138,7 +145,3 @@ MAILERS = {
 }
 
 AUTH_USER_MODEL = 'core.User'
-
-urlpatterns = [
-    path('', include('core.urls')),
-]

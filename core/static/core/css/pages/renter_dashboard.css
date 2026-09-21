@@ -194,33 +194,32 @@
 
 
 /* =========================================================
-   LOOKA BUTTON
+   PROFILE OVERVIEW
 ========================================================= */
 
-.looka-button {
+.profile-overview {
     height: 50px;
 
     display: flex;
     align-items: center;
 
-    gap: 12px;
+    gap: 10px;
 
-    padding: 4px 10px 4px 5px;
+    padding: 4px 14px 4px 5px;
 
     color: var(--navy);
-
-    background: rgba(255, 255, 255, 0.9);
-
-    border: 1px solid var(--border-light);
-
-    border-radius: var(--radius-pill);
 
     font-weight: 700;
 }
 
-.looka-avatar {
+
+/* PROFILE PICTURE */
+
+.profile-picture {
     width: 40px;
     height: 40px;
+
+    flex-shrink: 0;
 
     object-fit: cover;
 
@@ -229,13 +228,16 @@
     background: var(--cream);
 }
 
-.looka-button > svg {
-    width: 17px;
-    height: 17px;
 
-    margin-left: 3px;
+/* DISPLAY NAME */
 
-    stroke-width: 1.8;
+.profile-display-name {
+    white-space: nowrap;
+
+    color: var(--navy);
+
+    font-size: 13px;
+    font-weight: 700;
 }
 
 
