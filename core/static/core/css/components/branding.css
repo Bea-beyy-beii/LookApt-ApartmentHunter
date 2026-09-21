@@ -1,18 +1,4 @@
 /* =========================================================
-   LOOKAPT BRANDING
-   Logo + App Name + Optional Tagline
-
-   Shared across:
-   - Login
-   - Signup
-   - OTP
-   - Dashboard
-   - Sidebar
-   - Future pages
-========================================================= */
-
-
-/* =========================================================
    BRAND
    Main logo + name wrapper
 ========================================================= */
@@ -140,7 +126,7 @@
 
 /* =========================================================
    COMPACT VERSION
-   Useful for dashboards / sidebars
+   For dashboards / sidebars
 ========================================================= */
 
 .brand--compact .brand-logo {
