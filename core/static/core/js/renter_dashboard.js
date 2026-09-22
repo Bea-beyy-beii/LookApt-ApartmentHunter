@@ -1,79 +1,76 @@
-/* =========================================================
-   RENTER DASHBOARD
-   Small UI interactions
-========================================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* -----------------------------------------
-       Save listing
-    ----------------------------------------- */
+    const tabLinks = document.querySelectorAll(".tab-link");
+    const tabSections = document.querySelectorAll(".dashboard-tab");
 
-    const saveButtons = document.querySelectorAll(".save-listing");
 
-    saveButtons.forEach(button => {
+    function showTab(tabName, updateURL = true) {
 
-        button.addEventListener("click", () => {
+        tabSections.forEach(section => {
 
-            button.classList.toggle("saved");
+            section.hidden = section.dataset.section !== tabName;
 
         });
 
-    });
 
+        tabLinks.forEach(link => {
 
-    /* -----------------------------------------
-       Map category buttons
-    ----------------------------------------- */
-
-    const mapCategories = document.querySelectorAll(".map-category");
-
-    mapCategories.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            mapCategories.forEach(item => {
-                item.classList.remove("active");
-            });
-
-            button.classList.add("active");
+            link.classList.toggle(
+                "active",
+                link.dataset.tab === tabName
+            );
 
         });
 
-    });
 
+        if (updateURL) {
 
-    /* -----------------------------------------
-       Search
-    ----------------------------------------- */
+            const newURL = `?tab=${tabName}`;
 
-    const searchInput =
-        document.querySelector(".dashboard-search input");
+            window.history.pushState(
+                { tab: tabName },
+                "",
+                newURL
+            );
 
-    const listingCards =
-        document.querySelectorAll(".listing-card");
-
-    if (searchInput) {
-
-        searchInput.addEventListener("input", () => {
-
-            const searchValue =
-                searchInput.value.toLowerCase().trim();
-
-            listingCards.forEach(card => {
-
-                const cardText =
-                    card.textContent.toLowerCase();
-
-                card.style.display =
-                    cardText.includes(searchValue)
-                        ? ""
-                        : "none";
-
-            });
-
-        });
+        }
 
     }
+
+
+    function getCurrentTab() {
+
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        return params.get("tab") || "home";
+
+    }
+
+
+    tabLinks.forEach(link => {
+
+        link.addEventListener("click", event => {
+
+            event.preventDefault();
+
+            const tabName = link.dataset.tab;
+
+            showTab(tabName);
+
+        });
+
+    });
+
+
+    window.addEventListener("popstate", () => {
+
+        showTab(getCurrentTab(), false);
+
+    });
+
+
+    showTab(getCurrentTab(), false);
 
 });

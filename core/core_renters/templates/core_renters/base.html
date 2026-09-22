@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,41 +29,79 @@
 
 <div class="dashboard">
 
-    <!-- SIDEBAR -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
     <aside class="sidebar">
 
-        <a href="{% url 'renters:home' %}" class="brand brand--dashboard">
-            <img src="{% static 'core/images/logo2.png' %}" alt="LookApt" class="brand-logo">
+        <a href="?tab=home" class="brand brand--dashboard">
+
+            <img
+                src="{% static 'core/images/logo2.png' %}"
+                alt="LookApt"
+                class="brand-logo"
+            >
+
             <div class="sidebar-brand-text">
-                <div class="brand-name">Look<span>Apt</span></div>
-                <p class="brand-tagline">Your next home, in a tap.</p>
+                <div class="brand-name">
+                    Look<span>Apt</span>
+                </div>
+
+                <p class="brand-tagline">
+                    Your next home, in a tap.
+                </p>
             </div>
+
         </a>
+
 
         <nav class="sidebar-nav" aria-label="Main navigation">
 
-            <a href="{% url 'renters:home' %}"
-               class="sidebar-link {% if request.resolver_match.view_name == 'renters:home' %}active{% endif %}">
+            <!-- HOME -->
+
+            <a href="?tab=home"
+               class="sidebar-link tab-link"
+               data-tab="home">
+
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5H15v-6H9v6H3.5a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                 </span>
-                <span class="sidebar-label">Home</span>
+
+                <span class="sidebar-label">
+                    Home
+                </span>
+
             </a>
 
-            <a href="{% url 'renters:saved' %}"
-               class="sidebar-link {% if request.resolver_match.view_name == 'renters:saved' %}active{% endif %}">
+
+            <!-- SAVED LISTINGS -->
+
+            <a href="?tab=saved"
+               class="sidebar-link tab-link"
+               data-tab="saved">
+
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M6 3.8h12a1 1 0 0 1 1 1V21l-7-3.8L5 21V4.8a1 1 0 0 1 1-1Z"/>
                     </svg>
                 </span>
-                <span class="sidebar-label">Saved Listings</span>
+
+                <span class="sidebar-label">
+                    Saved Listings
+                </span>
+
             </a>
 
-            <a href="{% url 'renters:rentals' %}"
-               class="sidebar-link {% if request.resolver_match.view_name == 'renters:rentals' %}active{% endif %}">
+
+            <!-- RENTAL HISTORY -->
+
+            <a href="?tab=rentals"
+               class="sidebar-link tab-link"
+               data-tab="rentals">
+
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M3.8 12a8.2 8.2 0 1 0 2.4-5.8"/>
@@ -70,53 +109,88 @@
                         <path d="M12 7.5v5l3.3 2"/>
                     </svg>
                 </span>
-                <span class="sidebar-label">Rental History</span>
+
+                <span class="sidebar-label">
+                    Rental History
+                </span>
+
             </a>
 
-            <a href="{% url 'renters:transactions' %}"
-               class="sidebar-link {% if request.resolver_match.view_name == 'renters:transactions' %}active{% endif %}">
+
+            <!-- TRANSACTION HISTORY -->
+
+            <a href="?tab=transactions"
+               class="sidebar-link tab-link"
+               data-tab="transactions">
+
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M5 3.8h10l4 4V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.8a1 1 0 0 1 1-1Z"/>
                         <path d="M14 3.8v5h5M8 13h8M8 17h5"/>
                     </svg>
                 </span>
-                <span class="sidebar-label">Transaction History</span>
+
+                <span class="sidebar-label">
+                    Transaction History
+                </span>
+
             </a>
 
-            <!-- point to the messaging app once it exists -->
-            <a href="#" class="sidebar-link">
+
+            <!-- MESSAGES -->
+
+            <a href="#"
+               class="sidebar-link">
+
                 <span class="sidebar-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M5 5.5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11l-5 3v-3.1a2 2 0 0 1-3-1.7v-8.2a2 2 0 0 1 2-2Z"/>
                         <path d="M8 10h8M8 13.5h5"/>
                     </svg>
                 </span>
-                <span class="sidebar-label">Message Landlords</span>
+
+                <span class="sidebar-label">
+                    Message Landlords
+                </span>
+
             </a>
 
         </nav>
 
-        <a href="{% url 'login' %}" class="sidebar-link sidebar-logout">
+
+        <!-- LOG OUT -->
+
+        <a href="{% url 'login' %}"
+           class="sidebar-link sidebar-logout">
+
             <span class="sidebar-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h5"/>
                     <path d="m15 8 4 4-4 4M8 12h11"/>
                 </svg>
             </span>
-            <span class="sidebar-label">Log Out</span>
+
+            <span class="sidebar-label">
+                Log Out
+            </span>
+
         </a>
 
     </aside>
 
 
-    <!-- MAIN CONTENT -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
     <main class="renter-dashboard">
 
         <!-- TOP BAR -->
+
         <header class="dashboard-topbar">
 
             <label class="dashboard-search">
+
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <circle cx="11" cy="11" r="7"/>
                     <path d="m20 20-4-4"/>
@@ -127,48 +201,71 @@
                     placeholder="Search by Area, Name, or Landmark"
                     aria-label="Search listings"
                 >
+
             </label>
 
+
             <button class="filter-button" type="button">
+
                 <span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M4 5h16l-6.5 7.3V18l-3 1.5v-7.2z"/>
                     </svg>
+
                     Filter by
                 </span>
 
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="m7 9 5 5 5-5"/>
                 </svg>
+
             </button>
 
-            <button class="notification-button" type="button" aria-label="Notifications">
+
+            <button
+                class="notification-button"
+                type="button"
+                aria-label="Notifications"
+            >
+
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>
                 </svg>
+
                 <span class="notification-dot"></span>
+
             </button>
 
+
             <div class="profile-overview">
+
                 <img
                     src="{% static 'core/images/looka.png' %}"
                     alt="Profile Picture"
                     class="profile-picture"
                 >
 
-                <span class="profile-display-name">{{ request.user.display_name }}</span>
+                <span class="profile-display-name">
+                    {{ request.user.display_name }}
+                </span>
+
             </div>
 
         </header>
 
-        {% block content %}{% endblock %}
+
+        {% block content %}
+        {% endblock %}
 
     </main>
 
 </div>
 
+
 <script src="{% static 'core/js/renter_dashboard.js' %}"></script>
-{% block extra_js %}{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
 
 </body>
 </html>

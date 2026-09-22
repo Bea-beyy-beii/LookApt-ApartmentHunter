@@ -1,0 +1,1048 @@
+{% extends "core_renters/base.html" %}
+{% load static %}
+
+{% block title %}LookApt — Dashboard{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =====================================================
+     HOME
+====================================================== -->
+
+<section
+    id="home-section"
+    class="dashboard-tab"
+    data-section="home"
+>
+
+    <!-- MAP + SCHEDULE -->
+
+    <section class="dashboard-feature">
+
+        <!-- MAP -->
+
+        <div class="map-feature">
+
+            <div class="map-background">
+                <div class="map-road road-one"></div>
+                <div class="map-road road-two"></div>
+                <div class="map-road road-three"></div>
+                <div class="map-river"></div>
+            </div>
+
+
+            <div class="map-content">
+
+                <h1 class="map-title">
+
+                    <span class="map-title-icon">
+
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                            <circle cx="12" cy="9" r="2.5" fill="white"/>
+                        </svg>
+
+                    </span>
+
+                    Explore <strong>by Map</strong>
+
+                </h1>
+
+
+                <p class="map-subtitle">
+                    Find a place near what matters.
+                </p>
+
+
+                <button class="location-selector" type="button">
+
+                    <span>
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                            <circle cx="12" cy="9" r="2.5"/>
+                        </svg>
+
+                        Davao City
+
+                    </span>
+
+
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="m7 9 5 5 5-5"/>
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <!-- Decorative pins -->
+
+            <div class="map-pin map-pin-main">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M4 11 12 4l8 7v8H4z"/>
+                    <path d="M9 19v-5h6v5"/>
+                </svg>
+            </div>
+
+            <div class="map-pin map-pin-one">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M4 11 12 4l8 7v8H4z"/>
+                </svg>
+            </div>
+
+            <div class="map-pin map-pin-two">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M4 11 12 4l8 7v8H4z"/>
+                </svg>
+            </div>
+
+            <div class="map-pin map-pin-three">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M4 11 12 4l8 7v8H4z"/>
+                </svg>
+            </div>
+
+
+            <!-- Landmark markers -->
+
+            <div class="landmark-marker landmark-one">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M5 20h14M7 20v-8h10v8M9 12V8h6v4M8 8h8"/>
+                </svg>
+            </div>
+
+            <div class="landmark-marker landmark-two">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-5h6v5"/>
+                </svg>
+            </div>
+
+
+            <!-- Categories -->
+
+            <div class="map-categories">
+
+                <button class="map-category active" type="button">
+                    Home
+                </button>
+
+                <button class="map-category" type="button">
+                    School
+                </button>
+
+                <button class="map-category" type="button">
+                    Work
+                </button>
+
+                <button class="map-category" type="button">
+                    Mall
+                </button>
+
+                <button class="map-category" type="button">
+                    Hospital
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- UPCOMING -->
+
+        <aside class="upcoming-panel">
+
+            <div class="upcoming-header">
+
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="4" y="5" width="16" height="16" rx="2"/>
+                        <path d="M8 3v4M16 3v4M4 10h16M8 14h3M8 17h2"/>
+                    </svg>
+
+                    Upcoming
+                </h2>
+
+                <a href="#">
+                    View calendar →
+                </a>
+
+            </div>
+
+
+            <article class="appointment-card">
+
+                <div class="appointment-date">
+                    <span>SEP</span>
+                    <strong>18</strong>
+                    <small>Thu</small>
+                </div>
+
+
+                <img
+                    src="{% static 'core/images/apt1.png' %}"
+                    alt="LookApt Residences"
+                    class="appointment-image"
+                >
+
+
+                <div class="appointment-details">
+
+                    <h3>
+                        Site Visit
+                    </h3>
+
+                    <p class="appointment-time">
+                        1:30 PM – 2:30 PM
+                    </p>
+
+                    <p class="appointment-location">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                            <circle cx="12" cy="9" r="2.5"/>
+                        </svg>
+
+                        The Meridian Residences
+
+                    </p>
+
+                    <span class="appointment-status">
+                        Confirmed
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <a href="#" class="schedule-summary">
+
+                <span class="schedule-summary-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="4" y="5" width="16" height="16" rx="2"/>
+                        <path d="M8 3v4M16 3v4M4 10h16M12 13v4M12 13l2 1"/>
+                    </svg>
+                </span>
+
+
+                <span>
+
+                    <strong>
+                        Stay on track
+                    </strong>
+
+                    <small>
+                        View your upcoming visits and rental dates — all in one place.
+                    </small>
+
+                </span>
+
+
+                <svg
+                    class="summary-arrow"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                >
+                    <path d="m9 18 6-6-6-6"/>
+                </svg>
+
+            </a>
+
+        </aside>
+
+    </section>
+
+
+    <!-- HOME LISTINGS -->
+
+    <section
+        class="listing-grid"
+        aria-label="Apartment listings"
+    >
+
+        {% for image in "12345678" %}
+
+        <article
+            class="listing-card"
+            data-listing-id="{{ forloop.counter }}"
+        >
+
+            <div class="listing-image-wrapper">
+
+                <img
+                    src="{% static 'core/images/apt2.png' %}"
+                    alt="WTL Apartment"
+                    class="listing-image"
+                >
+
+                <span class="listing-availability">
+                    1 unit left!
+                </span>
+
+
+                <button
+                    class="save-listing"
+                    type="button"
+                    aria-label="Save listing"
+                    data-listing-id="{{ forloop.counter }}"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                    >
+                        <path d="M6 4.8A1.8 1.8 0 0 1 7.8 3h8.4A1.8 1.8 0 0 1 18 4.8V21l-6-3.4L6 21z"/>
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <div class="listing-info">
+
+                <div class="listing-heading-row">
+
+                    <h2>
+                        WTL Apartment
+                    </h2>
+
+                    <span class="listing-price">
+                        ₱10,000
+                        <small>/ month</small>
+                    </span>
+
+                </div>
+
+
+                <p class="listing-location">
+
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                        <circle cx="12" cy="9" r="2.5"/>
+                    </svg>
+
+                    Sta. Rosario, Buhangin
+
+                </p>
+
+
+                <div class="listing-features">
+
+                    <span>🐾 Pet-friendly</span>
+                    <span>❄ With AC</span>
+                    <span>🛋 Semi-furnished</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     SAVED LISTINGS
+====================================================== -->
+
+<section
+    id="saved-section"
+    class="dashboard-tab"
+    data-section="saved"
+    hidden  
+>
+
+    <div class="section-heading">
+
+        <h1>
+            Saved Listings
+        </h1>
+
+        <p>
+            Apartments you've saved for later.
+        </p>
+
+    </div>
+
+
+    <section
+        class="listing-grid saved-listing-grid"
+        aria-label="Saved apartment listings"
+    >
+
+         {% for image in "123" %}
+
+        <article
+            class="listing-card"
+            data-listing-id="{{ forloop.counter }}"
+        >
+
+            <div class="listing-image-wrapper">
+
+                <img
+                    src="{% static 'core/images/apt2.png' %}"
+                    alt="WTL Apartment"
+                    class="listing-image"
+                >
+
+                <span class="listing-availability">
+                    1 unit left!
+                </span>
+
+
+                <button
+                    class="save-listing"
+                    type="button"
+                    aria-label="Save listing"
+                    data-listing-id="{{ forloop.counter }}"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                    >
+                        <path d="M6 4.8A1.8 1.8 0 0 1 7.8 3h8.4A1.8 1.8 0 0 1 18 4.8V21l-6-3.4L6 21z"/>
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <div class="listing-info">
+
+                <div class="listing-heading-row">
+
+                    <h2>
+                        WTL Apartment
+                    </h2>
+
+                    <span class="listing-price">
+                        ₱10,000
+                        <small>/ month</small>
+                    </span>
+
+                </div>
+
+
+                <p class="listing-location">
+
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                        <circle cx="12" cy="9" r="2.5"/>
+                    </svg>
+
+                    Sta. Rosario, Buhangin
+
+                </p>
+
+
+                <div class="listing-features">
+
+                    <span>🐾 Pet-friendly</span>
+                    <span>❄ With AC</span>
+                    <span>🛋 Semi-furnished</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     RENTAL HISTORY
+====================================================== -->
+
+<section
+    id="rentals-section"
+    class="dashboard-tab"
+    data-section="rentals"
+    hidden
+>
+
+    <div class="section-heading">
+
+        <h1>
+            Rental History
+        </h1>
+
+        <p>
+            View your previous and current rentals.
+        </p>
+
+    </div>
+
+    <section
+        id="rentals-section"
+        class="dashboard-tab"
+        data-section="rentals"
+        hidden
+    >
+
+    <!-- =================================================
+        CURRENT RENTAL
+    ================================================== -->
+
+    <section class="current-rental">
+
+            <div class="current-rental-card">
+
+                <!-- PROPERTY IMAGE -->
+
+                <div class="current-rental-image">
+
+                    <img
+                        src="{% static 'core/images/apt2.png' %}"
+                        alt="WTL Apartment"
+                    >
+
+                    <span class="rental-status active">
+                        <span class="status-dot"></span>
+                        Active Rental
+                    </span>
+
+                </div>
+
+
+                <!-- PROPERTY INFORMATION -->
+
+                <div class="current-rental-info">
+
+                    <div class="rental-title-row">
+
+                        <div>
+
+                            <h2>WTL Apartment</h2>
+
+                            <p class="rental-location">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                                    <circle cx="12" cy="9" r="2.5"/>
+                                </svg>
+
+                                Sta. Rosario, Buhangin
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RENTAL DETAILS -->
+
+                    <div class="rental-details-grid">
+
+                        <!-- RENTAL PERIOD -->
+
+                        <div class="rental-detail">
+
+                            <div class="rental-detail-icon">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="4" y="5" width="16" height="16" rx="2"/>
+                                    <path d="M8 3v4M16 3v4M4 10h16"/>
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <span class="detail-label">
+                                    Rental Period
+                                </span>
+
+                                <strong>
+                                    Jan 15, 2026 – Aug 15, 2026
+                                </strong>
+
+                                <span class="rental-countdown">
+                                    Ends in 24 days
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- MONTHLY RENT -->
+
+                        <div class="rental-detail">
+
+                            <div class="rental-detail-icon">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="M15 8.5c-.7-.6-1.6-1-3-1-1.7 0-3 .8-3 2s1.3 2 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.4-.4-3-1"/>
+                                    <path d="M12 6v12"/>
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <span class="detail-label">
+                                    Monthly Rent
+                                </span>
+
+                                <strong>
+                                    ₱10,000 / month
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- UNIT -->
+
+                        <div class="rental-detail">
+
+                            <div class="rental-detail-icon">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="5" y="4" width="14" height="17" rx="1"/>
+                                    <path d="M9 8h6M9 12h6M9 16h3"/>
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <span class="detail-label">
+                                    Unit / Room
+                                </span>
+
+                                <strong>
+                                    Unit 204
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- LANDLORD -->
+
+                        <div class="rental-detail">
+
+                            <div class="rental-detail-icon">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="8" r="3"/>
+                                    <path d="M5 20c.8-3.5 3.1-5 7-5s6.2 1.5 7 5"/>
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <span class="detail-label">
+                                    Landlord / Property Owner
+                                </span>
+
+                                <strong>
+                                    Maria Santos
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- VIEW DETAILS -->
+
+                    <div class="rental-actions">
+
+                        <button
+                            type="button"
+                            class="rental-details-button"
+                        >
+
+                            <span>
+
+                                View Rental Details
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path d="m9 18 6-6-6-6"/>
+                                </svg>
+
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+            PAST RENTALS
+        ================================================== -->
+
+        <section class="past-rentals">
+
+            <div class="past-rentals-heading">
+
+                <div class="past-rentals-title">
+
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M3.8 12a8.2 8.2 0 1 0 2.4-5.8"/>
+                        <path d="M3.8 5v5h5"/>
+                        <path d="M12 7.5v5l3.3 2"/>
+                    </svg>
+
+                    <h2>Past Rentals</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="past-rentals-list">
+
+
+                <!-- =========================================
+                    PAST RENTAL 1
+                ========================================== -->
+
+                <article class="past-rental-card">
+
+                    <div class="past-rental-image">
+
+                        <img
+                            src="{% static 'core/images/apt2.png' %}"
+                            alt="WTL Apartment"
+                        >
+
+                    </div>
+
+
+                    <div class="past-rental-info">
+
+                        <h3>WTL Apartment</h3>
+
+                        <p class="past-rental-location">
+
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                                <circle cx="12" cy="9" r="2.5"/>
+                            </svg>
+
+                            Sta. Rosario, Buhangin
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Rental Period</span>
+
+                        <strong>
+                            Jan 2025 – Dec 2025
+                        </strong>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Monthly Rent</span>
+
+                        <strong>
+                            ₱9,500 / month
+                        </strong>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Unit / Room</span>
+
+                        <strong>
+                            Unit 208
+                        </strong>
+
+                    </div>
+
+
+                    <span class="rental-status completed">
+                        Completed
+                    </span>
+
+
+                    <button
+                        type="button"
+                        class="past-rental-button"
+                    >
+
+                        View Details
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                        >
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+
+                    </button>
+
+                </article>
+
+
+                <!-- =========================================
+                    PAST RENTAL 2
+                ========================================== -->
+
+                <article class="past-rental-card">
+
+                    <div class="past-rental-image">
+
+                        <img
+                            src="{% static 'core/images/apt1.png' %}"
+                            alt="The Meridian Residences"
+                        >
+
+                    </div>
+
+
+                    <div class="past-rental-info">
+
+                        <h3>The Meridian Residences</h3>
+
+                        <p class="past-rental-location">
+
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                                <circle cx="12" cy="9" r="2.5"/>
+                            </svg>
+
+                            Buhangin, Davao City
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Rental Period</span>
+
+                        <strong>
+                            Jun 2024 – Nov 2024
+                        </strong>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Monthly Rent</span>
+
+                        <strong>
+                            ₱8,500 / month
+                        </strong>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Unit / Room</span>
+
+                        <strong>
+                            Unit 101
+                        </strong>
+
+                    </div>
+
+
+                    <span class="rental-status completed">
+                        Completed
+                    </span>
+
+
+                    <button
+                        type="button"
+                        class="past-rental-button"
+                    >
+
+                        View Details
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                        >
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+
+                    </button>
+
+                </article>
+
+
+                <!-- =========================================
+                    PAST RENTAL 3
+                ========================================== -->
+
+                <article class="past-rental-card">
+
+                    <div class="past-rental-image">
+
+                        <img
+                            src="{% static 'core/images/apt2.png' %}"
+                            alt="Camella Northpoint"
+                        >
+
+                    </div>
+
+
+                    <div class="past-rental-info">
+
+                        <h3>Camella Northpoint</h3>
+
+                        <p class="past-rental-location">
+
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/>
+                                <circle cx="12" cy="9" r="2.5"/>
+                            </svg>
+
+                            Buhangin, Davao City
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Rental Period</span>
+
+                        <strong>
+                            Jan 2023 – May 2023
+                        </strong>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Monthly Rent</span>
+
+                        <strong>
+                            ₱7,500 / month
+                        </strong>
+
+                    </div>
+
+
+                    <div class="past-rental-detail">
+
+                        <span>Unit / Room</span>
+
+                        <strong>
+                            Unit 12B
+                        </strong>
+
+                    </div>
+
+
+                    <span class="rental-status terminated">
+                        Terminated
+                    </span>
+
+
+                    <button
+                        type="button"
+                        class="past-rental-button"
+                    >
+
+                        View Details
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                        >
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     TRANSACTION HISTORY
+====================================================== -->
+
+<section
+    id="transactions-section"
+    class="dashboard-tab"
+    data-section="transactions"
+    hidden
+>
+
+    <div class="section-heading">
+
+        <h1>
+            Transaction History
+        </h1>
+
+        <p>
+            View your rental payments and transactions.
+        </p>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

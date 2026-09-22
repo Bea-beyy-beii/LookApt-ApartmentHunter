@@ -1,14 +1,6 @@
-from django.views.generic import TemplateView
+# core_renters/views.py
+from django.shortcuts import render
 
-
-class HomeView(TemplateView):
-    template_name = "core_renters/home.html"
-
-class RentalsView(TemplateView):
-    template_name = "core_renters/rentals.html"
-
-class SavedView(TemplateView):
-    template_name = "core_renters/saved.html"
-
-class TransactionsView(TemplateView):
-    template_name = "core_renters/transactions.html"
+def dashboard(request):
+    active_tab = request.GET.get('tab', 'home')
+    return render(request, 'core_renters/renter_dashboard.html', {'active_tab': active_tab})
