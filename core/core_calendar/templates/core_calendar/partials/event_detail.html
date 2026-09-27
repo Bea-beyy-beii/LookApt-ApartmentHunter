@@ -1,0 +1,223 @@
+<div
+    class="event-detail-modal"
+    id="event-detail-modal"
+    hidden
+>
+
+    <div class="event-detail-overlay"></div>
+
+
+    <div
+        class="event-detail-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="event-detail-title"
+    >
+
+        <!-- Header -->
+
+        <div class="event-detail-header">
+
+            <div>
+
+                <span class="event-detail-type">
+                    {{ event.get_event_type_display }}
+                </span>
+
+                <h2 id="event-detail-title">
+                    {{ event.title }}
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="event-detail-close"
+                id="close-event-detail"
+                aria-label="Close event details"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- Details -->
+
+        <div class="event-detail-body">
+
+            <div class="event-detail-row">
+
+                <span class="detail-label">
+                    Date
+                </span>
+
+                <strong>
+                    {{ event.start_datetime|date:"F d, Y" }}
+                </strong>
+
+            </div>
+
+
+            <div class="event-detail-row">
+
+                <span class="detail-label">
+                    Time
+                </span>
+
+                <strong>
+
+                    {{ event.start_datetime|date:"g:i A" }}
+
+                    {% if event.end_datetime %}
+                        –
+                        {{ event.end_datetime|date:"g:i A" }}
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+            {% if event.location %}
+
+                <div class="event-detail-row">
+
+                    <span class="detail-label">
+                        Location
+                    </span>
+
+                    <strong>
+                        {{ event.location }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+
+            {% if event.property %}
+
+                <div class="event-detail-row">
+
+                    <span class="detail-label">
+                        Property
+                    </span>
+
+                    <strong>
+                        {{ event.property.name }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+
+            {% if event.unit %}
+
+                <div class="event-detail-row">
+
+                    <span class="detail-label">
+                        Unit
+                    </span>
+
+                    <strong>
+                        {{ event.unit }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+
+            {% if event.related_user %}
+
+                <div class="event-detail-row">
+
+                    <span class="detail-label">
+                        Participant
+                    </span>
+
+                    <strong>
+                        {{ event.related_user.get_full_name }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+
+            <div class="event-detail-row">
+
+                <span class="detail-label">
+                    Status
+                </span>
+
+                <span class="event-status {{ event.status }}">
+                    {{ event.get_status_display }}
+                </span>
+
+            </div>
+
+
+            {% if event.description %}
+
+                <div class="event-detail-description">
+
+                    <span class="detail-label">
+                        Notes
+                    </span>
+
+                    <p>
+                        {{ event.description }}
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Actions -->
+
+        <div class="event-detail-actions">
+
+            {% if event.can_edit %}
+
+                <a
+                    href="{% url 'calendar:edit_event' event.id %}"
+                    class="secondary-button"
+                >
+                    Edit Event
+                </a>
+
+            {% endif %}
+
+
+            {% if event.can_delete %}
+
+                <form
+                    method="post"
+                    action="{% url 'calendar:delete_event' event.id %}"
+                >
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="danger-button"
+                    >
+                        Delete Event
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>

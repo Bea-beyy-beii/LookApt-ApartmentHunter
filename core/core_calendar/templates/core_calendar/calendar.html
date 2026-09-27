@@ -1,0 +1,157 @@
+{% load static %}
+
+<section class="calendar-page">
+
+    <!-- Header -->
+    <header class="calendar-header">
+
+        <div class="calendar-heading">
+            <h1>Calendar</h1>
+
+            <p>
+                Keep track of your upcoming appointments,
+                rental dates, and property activities.
+            </p>
+        </div>
+
+        <button
+            type="button"
+            class="calendar-add-btn"
+            id="add-event-btn"
+        >
+            <span aria-hidden="true">+</span>
+            Add Event
+        </button>
+
+    </header>
+
+
+    <!-- Controls -->
+    <div class="calendar-controls">
+
+        <div class="calendar-navigation">
+
+            <button
+                type="button"
+                class="calendar-nav-btn"
+                id="previous-month"
+                aria-label="Previous month"
+            >
+                ←
+            </button>
+
+            <h2 id="calendar-month"></h2>
+
+            <button
+                type="button"
+                class="calendar-nav-btn"
+                id="next-month"
+                aria-label="Next month"
+            >
+                →
+            </button>
+
+        </div>
+
+
+        <div class="calendar-actions">
+
+            <button
+                type="button"
+                class="calendar-today-btn"
+                id="calendar-today"
+            >
+                Today
+            </button>
+
+
+            <div class="calendar-view-toggle">
+
+                <button
+                    type="button"
+                    class="calendar-view-btn active"
+                    data-calendar-view="month"
+                >
+                    Month
+                </button>
+
+                <button
+                    type="button"
+                    class="calendar-view-btn"
+                    data-calendar-view="week"
+                >
+                    Week
+                </button>
+
+                <button
+                    type="button"
+                    class="calendar-view-btn"
+                    data-calendar-view="list"
+                >
+                    List
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Calendar -->
+    <div class="calendar-layout">
+
+        <main class="calendar-main">
+
+            <div class="calendar-weekdays">
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+            </div>
+
+
+            <!-- JS will generate the days -->
+            <div
+                class="calendar-grid"
+                id="calendar-grid"
+            ></div>
+
+        </main>
+
+
+        <!-- Selected-day events -->
+        <aside class="calendar-sidebar">
+
+            <div class="calendar-sidebar-header">
+
+                <div>
+                    <span
+                        class="calendar-sidebar-label"
+                        id="selected-date-label"
+                    ></span>
+
+                    <h2>Today's Events</h2>
+                </div>
+
+            </div>
+
+
+            <div id="event-list-container">
+
+                {% include "core_calendar/partials/event_list.html" %}
+
+            </div>
+
+        </aside>
+
+    </div>
+
+
+    <!-- Event data for JavaScript -->
+    {{ events_json|json_script:"calendar-events-data" }}
+
+</section>

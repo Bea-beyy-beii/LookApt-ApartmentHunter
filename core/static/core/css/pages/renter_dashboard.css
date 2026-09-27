@@ -14,7 +14,8 @@
 
 #saved-section .section-heading,
 #rentals-section .section-heading,
-#transactions-section .section-heading{
+.inquiry-page-header,
+.reports-page-header .reports-title{
     display: flex;
     gap: 0;
     flex-direction: column;
@@ -23,13 +24,15 @@
 
 #saved-section .section-heading h1,
 #rentals-section .section-heading h1,
-#transactions-section .section-heading h1 {
+.inquiry-page-header h1,
+.reports-page-header .reports-title h1 {
     font-size: 20px;
 }
 
 #saved-section .section-heading p,
 #rentals-section .section-heading p,
-#transactions-section .section-heading p{
+.inquiry-page-header p,
+.reports-page-header .reports-title p{
     font-size: 14px;
     color: var(--text-secondary);
 }

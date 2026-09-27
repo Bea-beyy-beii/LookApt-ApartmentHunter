@@ -1,0 +1,16 @@
+# core_renters/views.py
+from django.shortcuts import render
+from core.core_inquiries.services import get_inquiries_context
+from core.core_reports.services import get_reports_context
+
+
+def dashboard(request):
+    active_tab = request.GET.get('tab', 'home')
+
+    context = {
+        'active_tab': active_tab,
+    }
+    context.update(get_inquiries_context(request.user))
+    context.update(get_reports_context(request.user))
+
+    return render(request, 'core_landlords/landlord_dashboard.html', context)

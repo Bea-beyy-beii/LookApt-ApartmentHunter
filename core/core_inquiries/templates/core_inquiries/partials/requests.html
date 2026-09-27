@@ -1,0 +1,104 @@
+{# core_inquiries/partials/requests.html #}
+<div class="requests-view" id="requests-view">
+
+    {% if requests %}
+        <div class="request-list">
+
+            {% for inquiry in requests %}
+                <article class="inquiry-request" data-request-id="{{ inquiry.id }}">
+
+                    <div class="request-property">
+                        {% if inquiry.listing.image %}
+                            <img src="{{ inquiry.listing.image.url }}"
+                                 alt="{{ inquiry.listing.title }}"
+                                 class="request-property-image">
+                        {% else %}
+                            <div class="request-property-placeholder">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/>
+                                    <path d="M9 21v-6h6v6"/>
+                                </svg>
+                            </div>
+                        {% endif %}
+
+                        <div class="request-property-info">
+                            <h3>{{ inquiry.listing.title }}</h3>
+                            {% if inquiry.listing.address %}
+                                <p>{{ inquiry.listing.address }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="request-details">
+
+                        <div class="request-type">
+                            <span class="request-label">Request</span>
+                            <strong>
+                                {{ inquiry.get_request_type_display|default:"Tenant Application" }}
+                            </strong>
+                        </div>
+
+                        <div class="request-status">
+                            <span class="request-label">Status</span>
+                            <span class="status-badge status-{{ inquiry.status|lower }}">
+                                {{ inquiry.get_status_display|default:inquiry.status|default:"Pending" }}
+                            </span>
+                        </div>
+
+                        {% if inquiry.created_at %}
+                            <time class="request-date"
+                                  datetime="{{ inquiry.created_at|date:'c' }}">
+                                Submitted {{ inquiry.created_at|date:"M j, Y" }}
+                            </time>
+                        {% endif %}
+                    </div>
+
+                    {% if inquiry.status == "pending" or inquiry.status == "under_review" %}
+                        <div class="request-note">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 8v5M12 16h.01"/>
+                            </svg>
+                            <p>
+                                Your request is being reviewed. You will be notified when
+                                the landlord updates its status.
+                            </p>
+                        </div>
+
+                    {% elif inquiry.status == "approved" or inquiry.status == "accepted" %}
+                        <div class="request-note request-note-success">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="m5 12 4 4L19 6"/>
+                            </svg>
+                            <p>
+                                Your request has been accepted. Check your messages and
+                                calendar for the next steps.
+                            </p>
+                        </div>
+
+                    {% elif inquiry.status == "rejected" or inquiry.status == "declined" %}
+                        <div class="request-note request-note-muted">
+                            <p>This request has been closed.</p>
+                        </div>
+                    {% endif %}
+
+                </article>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <div class="inquiry-empty-state">
+            <div class="empty-state-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M6 3h12v18H6z"/>
+                    <path d="M9 7h6M9 11h6M9 15h4"/>
+                </svg>
+            </div>
+            <h3>No requests yet</h3>
+            <p>
+                Applications and other requests you send to landlords will appear here.
+            </p>
+        </div>
+    {% endif %}
+
+</div>

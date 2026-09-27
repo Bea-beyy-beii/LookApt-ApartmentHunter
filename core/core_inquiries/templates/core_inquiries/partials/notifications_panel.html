@@ -1,0 +1,132 @@
+{# core_inquiries/partials/notifications_panel.html #}
+<section class="notifications-panel">
+
+    <header class="notifications-header">
+
+        <div class="notifications-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>
+            </svg>
+
+            <h2>Notifications</h2>
+
+            {% if unread_notifications_count %}
+                <span class="badge">{{ unread_notifications_count }}</span>
+            {% endif %}
+        </div>
+
+        <a href="#" class="notifications-view-all">
+            View All →
+        </a>
+
+    </header>
+
+
+    {% if notifications %}
+
+        <div class="notification-list">
+
+            {% for notification in notifications %}
+                <article
+                    class="notification-item{% if not notification.is_read %} unread{% endif %}"
+                    data-notification-id="{{ notification.id }}"
+                >
+
+                    <div class="notification-icon">
+
+                        {% if notification.type == "message" %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M5 6h14v10H8l-3 3V6Z"/>
+                                <path d="M8 10h8M8 13h5"/>
+                            </svg>
+
+                        {% elif notification.type == "site_visit" %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="4" y="5" width="16" height="15" rx="2"/>
+                                <path d="M8 3v4M16 3v4M4 9h16"/>
+                                <path d="M8 13h3M8 16h5"/>
+                            </svg>
+
+                        {% elif notification.type == "application" %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 3h9l4 4v14H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/>
+                                <path d="M14 3v5h5M8 13h8M8 17h5"/>
+                            </svg>
+
+                        {% else %}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M12 8v5M12 16h.01"/>
+                            </svg>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="notification-content">
+                        <div class="notification-heading">
+                            <h3>{{ notification.title }}</h3>
+
+                            {% if notification.created_at %}
+                                <time datetime="{{ notification.created_at|date:'c' }}">
+                                    {{ notification.created_at|timesince }} ago
+                                </time>
+                            {% endif %}
+                        </div>
+
+                        <p>{{ notification.message }}</p>
+                    </div>
+
+                    {% if not notification.is_read %}
+                        <span class="notification-unread"
+                              aria-label="Unread notification"></span>
+                    {% endif %}
+
+                </article>
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="notification-empty-state">
+            <div class="empty-state-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>
+                </svg>
+            </div>
+
+            <h3>You're all caught up</h3>
+
+            <p>
+                New messages, application updates, and schedule changes will appear here.
+            </p>
+        </div>
+
+    {% endif %}
+
+
+    <div class="calendar-card">
+
+        <div class="calendar-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <rect x="4" y="5" width="16" height="15" rx="2"/>
+                <path d="M8 3v4M16 3v4M4 9h16"/>
+                <path d="M8 13h3M8 16h5"/>
+            </svg>
+        </div>
+
+        <div class="calendar-card-content">
+            <h3>Keep track of your schedule</h3>
+
+            <p>
+                View your site visits and appointments in your calendar.
+            </p>
+
+            <a href="{% url 'core_renters:dashboard' %}?tab=home" class="calendar-button">
+                Go to Calendar <span aria-hidden="true">→</span>
+            </a>
+        </div>
+
+    </div>
+
+</section>

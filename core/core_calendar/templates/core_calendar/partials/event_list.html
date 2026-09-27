@@ -1,0 +1,81 @@
+<div class="event-list">
+
+    {% for event in events %}
+
+        <article
+            class="event-list-item"
+            data-event-id="{{ event.id }}"
+        >
+
+            <div class="event-list-time">
+
+                <strong>
+                    {{ event.start_datetime|date:"g:i A" }}
+                </strong>
+
+                {% if event.end_datetime %}
+                    <span>
+                        {{ event.end_datetime|date:"g:i A" }}
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <div
+                class="event-list-indicator
+                       {{ event.event_type }}"
+            ></div>
+
+
+            <div class="event-list-content">
+
+                <span class="event-list-type">
+                    {{ event.get_event_type_display }}
+                </span>
+
+                <h3>
+                    {{ event.title }}
+                </h3>
+
+
+                {% if event.location %}
+                    <p>
+                        {{ event.location }}
+                    </p>
+                {% endif %}
+
+
+                {% if event.related_user %}
+                    <span class="event-list-person">
+                        {{ event.related_user.get_full_name }}
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <button
+                type="button"
+                class="event-more-btn"
+                aria-label="View event details"
+                data-event-id="{{ event.id }}"
+            >
+                ···
+            </button>
+
+        </article>
+
+    {% empty %}
+
+        <div class="event-list-empty">
+
+            <p>
+                No events scheduled for this day.
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+</div>

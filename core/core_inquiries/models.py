@@ -1,0 +1,1 @@
+# models to create: types of request for both landlord and renters, message and threads, types of notif

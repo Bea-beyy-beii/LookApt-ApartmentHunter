@@ -1,0 +1,26 @@
+<div class="inquiry-page-header">
+    <h1>Inquiries</h1>
+    <p>Messages with Landlords and Review Inquiry Statuses</p>
+</div>
+
+<div class="inquiry-layout">
+  <section class="inquiry-main">
+    <div class="inquiry-tabs">
+      <button type="button" class="inquiry-tab active" data-tab="messages">Messages</button>
+      <button type="button" class="inquiry-tab" data-tab="requests">
+        Requests <span class="badge">{{ requests|length }}</span>
+      </button>
+    </div>
+
+    <div id="tab-messages" class="inquiry-tabpanel">
+      {% include "core_inquiries/partials/messages.html" %}
+    </div>
+    <div id="tab-requests" class="inquiry-tabpanel" hidden>
+      {% include "core_inquiries/partials/requests.html" %}
+    </div>
+  </section>
+
+  <aside class="inquiry-side">
+    {% include "core_inquiries/partials/notifications_panel.html" %}
+  </aside>
+</div>

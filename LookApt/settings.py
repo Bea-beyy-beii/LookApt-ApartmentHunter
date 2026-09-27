@@ -21,6 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env() 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env')) 
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
@@ -48,7 +51,8 @@ INSTALLED_APPS = [
     "core.core_renters",
     "core.core_landlords",
     "core.core_listings",
-    "core.core_messaging",
+    "core.core_inquiries",
+    "core.core_reports",
     "core.core_verification",
     "core.core_admin",
 ]

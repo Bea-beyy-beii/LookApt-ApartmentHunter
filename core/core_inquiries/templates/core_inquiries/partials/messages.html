@@ -1,0 +1,150 @@
+{# core_inquiries/partials/messages.html #}
+<div class="messages-view" id="messages-view">
+
+    {% if conversations %}
+        <div class="thread-list" id="thread-list">
+
+            {% for conversation in conversations %}
+                <button
+                    type="button"
+                    class="message-thread{% if conversation.unread_count %} unread{% endif %}"
+                    data-conversation-id="{{ conversation.id }}"
+                    data-action="open-conversation"
+                >
+                    <span class="thread-avatar">
+                        {% if conversation.other_user.profile_picture %}
+                            <img src="{{ conversation.other_user.profile_picture.url }}"
+                                 alt="{{ conversation.other_user.display_name }}">
+                        {% else %}
+                            <span class="thread-avatar-fallback">
+                                {{ conversation.other_user.display_name|default:"U"|slice:":1"|upper }}
+                            </span>
+                        {% endif %}
+                    </span>
+
+                    <span class="thread-details">
+                        <span class="thread-header">
+                            <strong class="thread-name">
+                                {{ conversation.other_user.display_name }}
+                            </strong>
+
+                            {% if conversation.latest_message %}
+                                <time class="thread-time"
+                                      datetime="{{ conversation.latest_message.created_at|date:'c' }}">
+                                    {{ conversation.latest_message.created_at|date:"M j, g:i A" }}
+                                </time>
+                            {% endif %}
+                        </span>
+
+                        <span class="thread-preview">
+                            {% if conversation.latest_message %}
+                                {% if conversation.latest_message.sender_id == request.user.id %}
+                                    <span class="preview-prefix">You: </span>
+                                {% endif %}
+                                {{ conversation.latest_message.content|truncatechars:75 }}
+                            {% else %}
+                                No messages yet.
+                            {% endif %}
+                        </span>
+                    </span>
+
+                    {% if conversation.unread_count %}
+                        <span class="thread-unread"
+                              aria-label="{{ conversation.unread_count }} unread message{{ conversation.unread_count|pluralize }}">
+                        </span>
+                    {% endif %}
+                </button>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <div class="inquiry-empty-state">
+            <div class="empty-state-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M5 5.5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11l-5 3v-3.1a2 2 0 0 1-3-1.7v-8.2a2 2 0 0 1 2-2Z"/>
+                    <path d="M8 10h8M8 13.5h5"/>
+                </svg>
+            </div>
+            <h3>No messages yet</h3>
+            <p>Messages from landlords about your inquiries will appear here.</p>
+        </div>
+    {% endif %}
+
+</div>
+
+
+{# Conversation view. inquiries.js can populate this after a thread is clicked. #}
+
+<div class="conversation-view" id="conversation-view" hidden>
+
+    <header class="conversation-header">
+
+        <button type="button"
+                class="conversation-back"
+                data-action="back-to-threads"
+                aria-label="Back to messages">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="m15 18-6-6 6-6"/>
+            </svg>
+        </button>
+
+        <div class="conversation-person">
+            <span class="conversation-avatar" data-conversation-avatar>
+                <span data-conversation-initials>U</span>
+            </span>
+
+            <div>
+                <strong data-conversation-name>Conversation</strong>
+                <span class="conversation-status" data-conversation-status></span>
+            </div>
+        </div>
+
+        <button type="button"
+                class="conversation-more"
+                aria-label="Conversation options">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="5" cy="12" r="1"/>
+                <circle cx="12" cy="12" r="1"/>
+                <circle cx="19" cy="12" r="1"/>
+            </svg>
+        </button>
+
+    </header>
+
+    <div class="conversation-messages"
+         data-conversation-messages
+         aria-live="polite">
+        <div class="conversation-empty">
+            Select a message thread to view the conversation.
+        </div>
+    </div>
+
+    <form class="message-composer"
+          data-message-form
+          method="post"
+          action="">
+        {% csrf_token %}
+
+        <input type="text"
+               name="message"
+               class="message-input"
+               placeholder="Type a message..."
+               autocomplete="off"
+               maxlength="2000"
+               required
+               disabled
+               data-message-input>
+
+        <button type="submit"
+                class="message-send"
+                aria-label="Send message"
+                disabled
+                data-message-send>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="m22 2-7 20-4-9-9-4Z"/>
+                <path d="M22 2 11 13"/>
+            </svg>
+        </button>
+    </form>
+
+</div>

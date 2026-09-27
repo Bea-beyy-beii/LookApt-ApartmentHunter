@@ -1,0 +1,185 @@
+<section class="calendar-widget dashboard-panel">
+
+    <div class="panel-header">
+
+        <div class="panel-title-group">
+
+            <span
+                class="panel-title-icon"
+                aria-hidden="true"
+            >
+                ▣
+            </span>
+
+            <h2>Upcoming</h2>
+
+        </div>
+
+
+        <a
+            href="{% url 'calendar:calendar' %}"
+            class="panel-link"
+        >
+            View calendar
+            <span aria-hidden="true">→</span>
+        </a>
+
+    </div>
+
+
+    {% if upcoming_events %}
+
+        <!-- First / nearest event -->
+
+        {% with event=upcoming_events.0 %}
+
+            <article class="calendar-featured-event">
+
+                <div class="event-date">
+
+                    <span class="event-month">
+                        {{ event.start_datetime|date:"M" }}
+                    </span>
+
+                    <strong class="event-day">
+                        {{ event.start_datetime|date:"d" }}
+                    </strong>
+
+                    <span class="event-weekday">
+                        {{ event.start_datetime|date:"D" }}
+                    </span>
+
+                </div>
+
+
+                <div class="event-information">
+
+                    <span class="event-type">
+                        {{ event.get_event_type_display }}
+                    </span>
+
+                    <h3>
+                        {{ event.title }}
+                    </h3>
+
+                    <span class="event-time">
+
+                        {{ event.start_datetime|date:"g:i A" }}
+
+                        {% if event.end_datetime %}
+                            –
+                            {{ event.end_datetime|date:"g:i A" }}
+                        {% endif %}
+
+                    </span>
+
+
+                    {% if event.location %}
+                        <span class="event-location">
+                            {{ event.location }}
+                        </span>
+                    {% endif %}
+
+                </div>
+
+
+                <span class="event-status {{ event.status }}">
+                    {{ event.get_status_display }}
+                </span>
+
+            </article>
+
+        {% endwith %}
+
+
+        <!-- Other upcoming events -->
+
+        {% if upcoming_events|length > 1 %}
+
+            <div class="upcoming-events">
+
+                {% for event in upcoming_events|slice:"1:" %}
+
+                    <article class="mini-calendar-event">
+
+                        <div class="mini-event-date">
+
+                            <strong>
+                                {{ event.start_datetime|date:"d" }}
+                            </strong>
+
+                            <span>
+                                {{ event.start_datetime|date:"M" }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="mini-event-info">
+
+                            <strong>
+                                {{ event.title }}
+                            </strong>
+
+                            <span>
+
+                                {{ event.start_datetime|date:"M d, g:i A" }}
+
+                                {% if event.location %}
+                                    · {{ event.location }}
+                                {% endif %}
+
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+    {% else %}
+
+        <!-- Empty state -->
+
+        <div class="calendar-empty-state">
+
+            <div
+                class="calendar-empty-icon"
+                aria-hidden="true"
+            >
+                ▣
+            </div>
+
+            <h3>No upcoming events</h3>
+
+            <p>
+                You're all caught up. Upcoming activities
+                will appear here.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <a
+        href="{% url 'calendar:calendar' %}"
+        class="calendar-widget-footer"
+    >
+
+        <span>
+            View all upcoming events
+        </span>
+
+        <span aria-hidden="true">
+            →
+        </span>
+
+    </a>
+
+</section>
