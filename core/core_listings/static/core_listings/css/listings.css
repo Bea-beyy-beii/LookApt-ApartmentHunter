@@ -1,0 +1,110 @@
+/* =========================================================
+   MY LISTINGS PAGE
+   ========================================================= */
+
+.listings-page {
+    width: 100%;
+    min-height: 100%;
+    padding: 30px 40px 50px;
+    box-sizing: border-box;
+    background: #fffaf0;
+}
+
+.listings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+}
+
+.listings-heading{
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------------------------------------------------------
+   Add Property button
+   --------------------------------------------------------- */
+
+.add-property-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 175px;
+    height: 48px;
+    padding: 0 22px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #c58d4b;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-property-btn:hover {
+    background: #ae783d;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(50, 80, 110, 0.16);
+}
+
+.btn-icon {
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+/* ---------------------------------------------------------
+   Properties list
+   --------------------------------------------------------- */
+
+.properties-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .listings-page {
+        padding: 24px;
+    }
+
+    .listings-header {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .add-property-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .listings-page {
+        padding: 18px;
+    }
+
+    .listings-heading h1 {
+        font-size: 30px;
+    }
+
+    .listings-heading p {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,398 @@
+/* =========================================================
+   PROPERTY CARD
+   ========================================================= */
+
+.property-card {
+    width: 100%;
+    overflow: hidden;
+
+    border: 1px solid #eadfce;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow: 0 3px 12px rgba(38, 69, 98, 0.07);
+
+    transition: box-shadow 0.2s ease;
+}
+
+.property-card:hover {
+    box-shadow: 0 6px 18px rgba(38, 69, 98, 0.11);
+}
+
+/* ---------------------------------------------------------
+   Main property row
+   --------------------------------------------------------- */
+
+.property-card-main {
+    display: grid;
+    grid-template-columns: 380px 1fr auto;
+    align-items: center;
+
+    gap: 24px;
+
+    padding: 12px 18px;
+}
+
+/* ---------------------------------------------------------
+   Property image
+   --------------------------------------------------------- */
+
+.property-thumbnail {
+    position: relative;
+
+    width: 100%;
+    height: 130px;
+
+    overflow: hidden;
+    border-radius: 10px;
+
+    background: #e9e3da;
+}
+
+.property-thumbnail img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+.photo-count {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: rgba(15, 35, 55, 0.78);
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------
+   Property information
+   --------------------------------------------------------- */
+
+.property-info {
+    min-width: 0;
+}
+
+.property-name {
+    margin: 0 0 7px;
+
+    color: #123f73;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.property-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.property-name a:hover {
+    color: #c58d4b;
+}
+
+.property-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 17px;
+
+    color: #607c98;
+    font-size: 14px;
+}
+
+.property-stats {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.property-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.property-stat-icon {
+    font-size: 21px;
+    color: #123f73;
+}
+
+.property-stat.available .property-stat-icon {
+    color: #16a66a;
+}
+
+.property-stat.occupied .property-stat-icon {
+    color: #d98943;
+}
+
+.property-stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.property-stat-number {
+    color: #173f70;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.property-stat-label {
+    color: #71869c;
+    font-size: 12px;
+}
+
+/* ---------------------------------------------------------
+   Property actions
+   --------------------------------------------------------- */
+
+.property-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.property-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 16px;
+
+    border-radius: 22px;
+
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.property-status::before {
+    content: "";
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+}
+
+.property-status.active {
+    background: #e3f5eb;
+    color: #138652;
+}
+
+.property-status.active::before {
+    background: #13a463;
+}
+
+.property-status.unpublished {
+    background: #eef0f3;
+    color: #647387;
+}
+
+.property-status.unpublished::before {
+    background: #718096;
+}
+
+/* ---------------------------------------------------------
+   Edit button
+   --------------------------------------------------------- */
+
+.edit-property-btn {
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: 1px solid #d69a58;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #123f73;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.edit-property-btn:hover {
+    background: #fff7ec;
+    border-color: #c58d4b;
+}
+
+/* ---------------------------------------------------------
+   More button
+   --------------------------------------------------------- */
+
+.property-more-btn {
+    width: 36px;
+    height: 42px;
+
+    border: none;
+    background: transparent;
+
+    color: #123f73;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.property-more-btn:hover {
+    background: #f5eee3;
+    border-radius: 7px;
+}
+
+/* ---------------------------------------------------------
+   Expand button
+   --------------------------------------------------------- */
+
+.property-expand-btn {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    background: transparent;
+
+    color: #123f73;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.property-card.expanded .property-expand-btn {
+    transform: rotate(180deg);
+}
+
+/* ---------------------------------------------------------
+   Units section
+   --------------------------------------------------------- */
+
+.property-units {
+    display: none;
+
+    padding: 0 18px 18px;
+
+    border-top: 1px solid #eee5d9;
+
+    background: #fffdf9;
+}
+
+.property-card.expanded .property-units {
+    display: block;
+}
+
+.units-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 0 12px;
+}
+
+.units-title {
+    margin: 0;
+
+    color: #173f70;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.units-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ---------------------------------------------------------
+   Add unit
+   --------------------------------------------------------- */
+
+.add-unit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    height: 40px;
+    padding: 0 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #c58d4b;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.add-unit-btn:hover {
+    background: #ae783d;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+
+    .property-card-main {
+        grid-template-columns: 280px 1fr;
+    }
+
+    .property-actions {
+        grid-column: 2;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .property-card-main {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .property-thumbnail {
+        height: 180px;
+    }
+
+    .property-actions {
+        justify-content: space-between;
+    }
+
+    .property-stats {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .units-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+}

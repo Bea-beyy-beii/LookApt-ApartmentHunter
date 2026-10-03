@@ -1,0 +1,206 @@
+{% extends "core_landlords/base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ property.name }} | LookApt
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core_listings/css/property_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="property-detail-page">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+
+        <a href="{% url 'core_listings:listings' %}">
+            My Listings
+        </a>
+
+        <span>›</span>
+
+        <span>{{ property.name }}</span>
+
+    </div>
+
+
+    <!-- Page Header -->
+    <div class="property-detail-header">
+
+        <div>
+
+            <div class="property-title-row">
+
+                <h1>{{ property.name }}</h1>
+
+                <span class="status-pill
+                    {% if property.status == 'active' %}
+                        status-active
+                    {% else %}
+                        status-unpublished
+                    {% endif %}
+                ">
+
+                    <span class="status-dot"></span>
+                    {{ property.get_status_display }}
+
+                </span>
+
+            </div>
+
+            <p class="property-address">
+                ⌖ {{ property.address }}
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'core_listings:property_edit' property.pk %}"
+           class="edit-property-btn">
+
+            ✎ Edit Property
+
+        </a>
+
+    </div>
+
+
+    <!-- Property Photos -->
+    <section class="property-gallery">
+
+        <div class="gallery-main">
+
+            {% with photo=property.pictures.first %}
+
+                {% if photo %}
+
+                    <img src="{{ photo.image.url }}"
+                         alt="{{ property.name }}"
+                         id="main-property-image">
+
+                {% else %}
+
+                    <div class="gallery-placeholder">
+                        No property photos
+                    </div>
+
+                {% endif %}
+
+            {% endwith %}
+
+        </div>
+
+
+        <div class="gallery-thumbnails">
+
+            {% for photo in property.pictures.all %}
+
+                <button type="button"
+                        class="gallery-thumbnail"
+                        data-gallery-image="{{ photo.image.url }}">
+
+                    <img src="{{ photo.image.url }}"
+                         alt="{{ property.name }} photo {{ forloop.counter }}">
+
+                </button>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- Quick Stats -->
+    <div class="property-quick-stats">
+
+        <div>
+            <span>Units</span>
+            <strong>{{ property.total_units }}</strong>
+        </div>
+
+        <div>
+            <span>Available</span>
+            <strong>{{ property.available_units }}</strong>
+        </div>
+
+        <div>
+            <span>Price Range</span>
+            <strong>
+                ₱{{ property.min_price|floatformat:0 }}
+                -
+                ₱{{ property.max_price|floatformat:0 }}
+            </strong>
+        </div>
+
+    </div>
+
+
+    <!-- Tabs -->
+    <nav class="property-tabs">
+
+        <a href="?tab=overview"
+           class="{% if active_tab == 'overview' or not active_tab %}active{% endif %}">
+            Overview
+        </a>
+
+        <a href="?tab=units"
+           class="{% if active_tab == 'units' %}active{% endif %}">
+            Units
+        </a>
+
+        <a href="?tab=location"
+           class="{% if active_tab == 'location' %}active{% endif %}">
+            Location
+        </a>
+
+        <a href="?tab=photos"
+           class="{% if active_tab == 'photos' %}active{% endif %}">
+            Photos
+        </a>
+
+        <a href="?tab=inquiries"
+           class="{% if active_tab == 'inquiries' %}active{% endif %}">
+            Inquiries
+        </a>
+
+    </nav>
+
+
+    <!-- Active Tab -->
+    <section class="property-tab-content">
+
+        {% if active_tab == "units" %}
+
+            {% include "core_listings/tabs/units_tab.html" %}
+
+        {% elif active_tab == "location" %}
+
+            {% include "core_listings/tabs/location_tab.html" %}
+
+        {% elif active_tab == "photos" %}
+
+            {% include "core_listings/tabs/photos_tab.html" %}
+
+        {% elif active_tab == "inquiries" %}
+
+            {% include "core_listings/tabs/inquiries_tab.html" %}
+
+        {% else %}
+
+            {% include "core_listings/tabs/overview_tab.html" %}
+
+        {% endif %}
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'core_listings/js/property_detail.js' %}"></script>
+{% endblock %}

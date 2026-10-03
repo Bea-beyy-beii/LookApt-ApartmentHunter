@@ -1,0 +1,82 @@
+<div class="inquiries-tab">
+
+    <div class="tab-section-header">
+
+        <div>
+            <h2>Inquiries</h2>
+            <p>
+                Messages and requests related to this property.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="property-inquiries-list">
+
+        {% for inquiry in inquiries %}
+
+            <article class="property-inquiry"
+                     data-inquiry-id="{{ inquiry.pk }}">
+
+                <div class="inquiry-avatar">
+
+                    {% if inquiry.sender.profile_picture %}
+
+                        <img src="{{ inquiry.sender.profile_picture.url }}"
+                             alt="{{ inquiry.sender.get_full_name }}">
+
+                    {% else %}
+
+                        <span>
+                            {{ inquiry.sender.first_name|first|upper }}
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="inquiry-content">
+
+                    <div class="inquiry-top">
+
+                        <strong>
+                            {{ inquiry.sender.get_full_name }}
+                        </strong>
+
+                        <time>
+                            {{ inquiry.created_at|date:"M d, Y" }}
+                        </time>
+
+                    </div>
+
+
+                    <p>
+                        {{ inquiry.message|truncatewords:20 }}
+                    </p>
+
+                </div>
+
+
+                <span class="inquiry-status
+                    inquiry-status-{{ inquiry.status }}">
+
+                    {{ inquiry.get_status_display }}
+
+                </span>
+
+            </article>
+
+        {% empty %}
+
+            {% include "core_listings/shared/empty_state.html" with
+                heading="No inquiries yet"
+                message="You don't have any inquiries about this property."
+            %}
+
+        {% endfor %}
+
+    </div>
+
+</div>

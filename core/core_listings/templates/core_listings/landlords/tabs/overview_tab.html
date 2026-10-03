@@ -1,0 +1,75 @@
+<div class="overview-tab">
+
+    <div class="overview-description">
+
+        <h2>About this Property</h2>
+
+        <p>
+            {{ property.description|default:"No description has been added yet." }}
+        </p>
+
+    </div>
+
+
+    <div class="property-facts">
+
+        <h2>Property Information</h2>
+
+        <div class="facts-grid">
+
+            <div class="fact-item">
+                <span>Address</span>
+                <strong>{{ property.address }}</strong>
+            </div>
+
+            <div class="fact-item">
+                <span>Total Units</span>
+                <strong>{{ property.total_units }}</strong>
+            </div>
+
+            <div class="fact-item">
+                <span>Available Units</span>
+                <strong>{{ property.available_units }}</strong>
+            </div>
+
+            <div class="fact-item">
+                <span>Price Range</span>
+                <strong>
+                    ₱{{ property.min_price|floatformat:0 }}
+                    -
+                    ₱{{ property.max_price|floatformat:0 }}
+                </strong>
+            </div>
+
+            <div class="fact-item">
+                <span>Pet Friendly</span>
+
+                <strong>
+                    {% if property.pet_friendly %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </strong>
+
+            </div>
+
+            <div class="fact-item">
+                <span>Sex Restriction</span>
+                <strong>
+                    {{ property.get_sex_restriction_display|default:"No Restriction" }}
+                </strong>
+            </div>
+
+            <div class="fact-item">
+                <span>Lease Term</span>
+                <strong>
+                    {{ property.get_lease_term_display|default:"Not specified" }}
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

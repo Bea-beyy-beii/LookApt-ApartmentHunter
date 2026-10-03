@@ -1,0 +1,459 @@
+/* =========================================================
+   PROPERTY FORM / CREATE-EDIT WIZARD
+   ========================================================= */
+
+.property-form-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 36px 40px;
+
+    color: var(--text-primary);
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.property-form-page .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 12px;
+
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.property-form-page .breadcrumb a {
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+.property-form-page .breadcrumb a:hover {
+    color: var(--navy-dark);
+}
+
+.property-form-page .breadcrumb span:nth-child(2) {
+    color: var(--border-medium);
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   WIZARD HEADER
+   ========================================================= */
+
+.wizard-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.wizard-header h1 {
+    margin: 0 0 6px;
+
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+
+    color: var(--navy);
+}
+
+.wizard-header p {
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   STEP INDICATOR
+   ========================================================= */
+
+.wizard-steps {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    margin-bottom: 18px;
+
+    background: transparent;
+}
+
+
+/*
+   Each step occupies equal space.
+*/
+
+.wizard-step {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    flex: 1;
+
+    min-height: 52px;
+    padding: 8px 18px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border-light);
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/*
+   Rounded outer ends.
+*/
+
+.wizard-step:first-child {
+    border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+}
+
+.wizard-step:last-child {
+    border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+}
+
+
+/* =========================================================
+   STEP CIRCLE
+   ========================================================= */
+
+.step-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+    border: 2px solid var(--border-light);
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* =========================================================
+   ACTIVE STEP
+   ========================================================= */
+
+.wizard-step.active {
+    background: var(--navy);
+
+    border-color: var(--navy);
+
+    color: var(--white);
+
+    z-index: 2;
+
+    box-shadow: var(--shadow-soft);
+}
+
+.wizard-step.active .step-circle {
+    background: var(--white);
+
+    border-color: var(--white);
+
+    color: var(--navy);
+}
+
+
+/* =========================================================
+   COMPLETED STEP
+   ========================================================= */
+
+.wizard-step.completed {
+    background: var(--white);
+
+    border-color: var(--border-light);
+
+    color: var(--navy);
+}
+
+.wizard-step.completed .step-circle {
+    background: var(--success);
+
+    border-color: var(--success);
+
+    color: var(--white);
+}
+
+
+/* =========================================================
+   WIZARD FORM
+   ========================================================= */
+
+.property-wizard-form {
+    width: 100%;
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+   ========================================================= */
+
+.form-errors {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+
+    border: 1px solid rgba(201, 75, 75, 0.25);
+    border-radius: var(--radius-md);
+
+    background: rgba(201, 75, 75, 0.08);
+
+    color: var(--error);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   WIZARD CONTENT
+   ========================================================= */
+
+.wizard-content {
+    width: 100%;
+
+    padding: 22px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-soft);
+}
+
+
+/*
+   This makes sure included step files don't accidentally
+   create unwanted outer spacing.
+*/
+
+.wizard-content > *:first-child {
+    margin-top: 0;
+}
+
+.wizard-content > *:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.wizard-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+
+/* =========================================================
+   WIZARD BUTTONS
+   ========================================================= */
+
+.wizard-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 110px;
+    min-height: 42px;
+
+    padding: 0 22px;
+
+    border-radius: var(--radius-md);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.wizard-actions .btn-secondary {
+    background: var(--white);
+
+    border: 1px solid var(--border-light);
+
+    color: var(--navy);
+}
+
+.wizard-actions .btn-secondary:hover {
+    background: var(--cream);
+
+    border-color: var(--navy);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.wizard-actions .btn-primary {
+    background: var(--gold);
+
+    border: 1px solid var(--gold);
+
+    color: var(--navy);
+
+    box-shadow: 0 5px 15px rgba(245, 185, 76, 0.22);
+}
+
+.wizard-actions .btn-primary:hover {
+    background: #e9aa3d;
+
+    border-color: #e9aa3d;
+
+    color: var(--navy-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 7px 18px rgba(245, 185, 76, 0.28);
+}
+
+
+/* =========================================================
+   FORM FIELD HELPERS
+   ========================================================= */
+
+.property-wizard-form input,
+.property-wizard-form select,
+.property-wizard-form textarea {
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+}
+
+
+/*
+   Don't let normal form controls overflow the card.
+*/
+
+.property-wizard-form input,
+.property-wizard-form select,
+.property-wizard-form textarea {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .property-form-page {
+        padding: 24px 22px 32px;
+    }
+
+    .wizard-header h1 {
+        font-size: 28px;
+    }
+
+    .wizard-steps {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .wizard-step {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        border-radius: var(--radius-md) !important;
+    }
+
+    .wizard-content {
+        padding: 18px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .property-form-page {
+        padding: 20px 14px 28px;
+    }
+
+    .wizard-header h1 {
+        font-size: 25px;
+    }
+
+    .wizard-header p {
+        font-size: 14px;
+    }
+
+    .wizard-content {
+        padding: 15px;
+    }
+
+    .wizard-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .wizard-actions .btn {
+        width: 100%;
+    }
+}
+
+[hidden] {
+    display: none !important;
+}

@@ -1,0 +1,210 @@
+<section class="wizard-step-content">
+
+    <div class="section-heading">
+
+        <h2>Review Your Property</h2>
+
+        <p>
+            Please review the details before creating your property.
+        </p>
+
+    </div>
+
+
+    <!-- Details + Location -->
+    <div class="review-grid">
+
+        <!-- Property Details -->
+        <section class="review-card">
+
+            <div class="review-card-header">
+
+                <div>
+                    <h3>Property Details</h3>
+                </div>
+
+                <button type="submit"
+                        name="edit_step"
+                        value="1"
+                        class="review-edit-btn">
+
+                    ✎ Edit
+
+                </button>
+
+            </div>
+
+
+            <div class="review-property-info">
+
+                <div class="review-property-image">
+
+                    {% with photo=property.pictures.first %}
+
+                        {% if photo %}
+
+                            <img src="{{ photo.image.url }}"
+                                 alt="{{ property.name }}">
+
+                        {% else %}
+
+                            <div class="review-image-placeholder">
+                                ⌂
+                            </div>
+
+                        {% endif %}
+
+                    {% endwith %}
+
+                </div>
+
+
+                <div>
+
+                    <h3>{{ property.name }}</h3>
+
+                    <p>
+                        ⌖ {{ property.address }}
+                    </p>
+
+                    <p class="property-description">
+                        {{ property.description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="review-stat-grid">
+
+                <div>
+                    <span>Total Units</span>
+                    <strong>{{ property.total_units }}</strong>
+                </div>
+
+                <div>
+                    <span>Price Range</span>
+                    <strong>
+                        ₱{{ property.min_price|floatformat:0 }}
+                        -
+                        ₱{{ property.max_price|floatformat:0 }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Pet Friendly</span>
+                    <strong>
+                        {% if property.pet_friendly %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Sex Restriction</span>
+                    <strong>
+                        {{ property.get_sex_restriction_display }}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Lease Term</span>
+                    <strong>
+                        {{ property.get_lease_term_display }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Location -->
+        <section class="review-card">
+
+            <div class="review-card-header">
+
+                <div>
+
+                    <h3>Location</h3>
+
+                    <p>
+                        {{ property.address }}
+                    </p>
+
+                </div>
+
+                <button type="submit"
+                        name="edit_step"
+                        value="2"
+                        class="review-edit-btn">
+
+                    ✎ Edit
+
+                </button>
+
+            </div>
+
+
+            <div class="review-map">
+
+                {% include "core_maps/location_picker.html" with
+                    editable=False
+                    latitude=property.lat
+                    longitude=property.lng
+                    radius=5
+                %}
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- Photos -->
+    <section class="review-card">
+
+        <div class="review-card-header">
+
+            <div>
+
+                <h3>
+                    Photos ({{ property.pictures.count }})
+                </h3>
+
+            </div>
+
+            <button type="submit"
+                    name="edit_step"
+                    value="3"
+                    class="review-edit-btn">
+
+                ✎ Edit
+
+            </button>
+
+        </div>
+
+
+        <div class="review-photo-grid">
+
+            {% for photo in property.pictures.all %}
+
+                <div class="review-photo">
+
+                    <img src="{{ photo.image.url }}"
+                         alt="{{ property.name }}">
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</section>

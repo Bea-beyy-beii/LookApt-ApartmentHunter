@@ -1,62 +1,14 @@
 /* =========================================================
-   LANDLORD DASHBOARD
-   Page-specific styles only
+   LOOKAPT — LANDLORD DASHBOARD
+   Page-specific styles only (mirrors renter_dashboard.css)
+   Place at: core/static/core/css/pages/landlord_dashboard.css
 ========================================================= */
-
-.landlord-dashboard {
-    min-height: 100vh;
-
-    background: var(--cream);
-
-    position: relative;
-    overflow: hidden;
-}
-
-#listings-section .section-heading,
-#rentals-section .section-heading,
-.inquiry-page-header,
-.reports-page-header .reports-title{
-    display: flex;
-    gap: 0;
-    flex-direction: column;
-    margin-bottom: 16px;
-}
-
-#listings-section .section-heading h1,
-#rentals-section .section-heading h1,
-.inquiry-page-header h1,
-.reports-page-header .reports-title h1 {
-    font-size: 20px;
-}
-
-#listings-section .section-heading p,
-#rentals-section .section-heading p,
-.inquiry-page-header p,
-.reports-page-header .reports-title p{
-    font-size: 14px;
-    color: var(--text-secondary);
-}
-
-/* =========================================================
-   FLOATING ELEMENT SHADOWS
-========================================================= */
-
-.landlord-dashboard .dashboard-search,
-.landlord-dashboard .filter-button,
-.landlord-dashboard .looka-button {
-    box-shadow:
-        0 8px 24px var(--gold);
-}
-
-
-.renter-dashboard .map-schedule-section {
-    box-shadow:
-        0 16px 40px var(--cream);
-}
 
 
 /* =========================================================
    DASHBOARD LAYOUT
+   (these two rules were missing — they put the sidebar and
+   the main content side by side)
 ========================================================= */
 
 .dashboard {
@@ -67,8 +19,70 @@
 .landlord-dashboard {
     min-width: 0;
     flex: 1;
+    min-height: 100vh;
 
     padding: 40px 42px 50px;
+
+    background: var(--cream);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/*
+   If the content STILL slides under the sidebar, your sidebar is
+   position: fixed. Uncomment this and set it to the sidebar width:
+
+   .landlord-dashboard { margin-left: 328px; }
+*/
+
+
+/* =========================================================
+   DASHBOARD VARIABLES
+   Scoped to .landlord-dashboard (NOT :root) so they don't
+   override tokens the sidebar and other pages share.
+========================================================= */
+
+.landlord-dashboard {
+    --landlord-navy: var(--navy, #203a68);
+    --landlord-navy-dark: var(--navy-dark, #162a4d);
+    --landlord-gold: var(--gold, #c9a227);
+    --landlord-cream: var(--cream, #f7f2e7);
+
+    --dashboard-bg: #f6f7f9;
+    --card-bg: #ffffff;
+
+    --text-main: #243044;
+    --text-secondary: #697386;
+    --text-muted: #929bab;
+
+    --border-light: #e8ebf0;
+
+    --success: #3c8c67;
+    --success-light: #eaf6ef;
+
+    --warning: #c98a27;
+    --warning-light: #fff6e3;
+
+    --danger: #c95757;
+    --danger-light: #fff0f0;
+
+    --shadow-soft: 0 4px 20px rgba(32, 58, 104, 0.07);
+    --shadow-hover: 0 8px 28px rgba(32, 58, 104, 0.12);
+
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+}
+
+
+/* =========================================================
+   FLOATING ELEMENT SHADOWS
+========================================================= */
+
+.landlord-dashboard .dashboard-search,
+.landlord-dashboard .filter-button {
+    box-shadow: 0 8px 24px var(--gold);
 }
 
 
@@ -103,8 +117,7 @@
 
     border-radius: var(--radius-pill);
 
-    box-shadow:
-        0 3px 12px rgba(30, 50, 70, 0.04);
+    box-shadow: 0 3px 12px rgba(30, 50, 70, 0.04);
 }
 
 .dashboard-search svg {
@@ -134,9 +147,7 @@
 }
 
 
-/* =========================================================
-   FILTER
-========================================================= */
+/* FILTER */
 
 .filter-button {
     min-width: 171px;
@@ -174,9 +185,7 @@
 }
 
 
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
+/* NOTIFICATIONS */
 
 .notification-button {
     position: relative;
@@ -217,9 +226,7 @@
 }
 
 
-/* =========================================================
-   PROFILE OVERVIEW
-========================================================= */
+/* PROFILE OVERVIEW */
 
 .profile-overview {
     height: 50px;
@@ -236,9 +243,6 @@
     font-weight: 700;
 }
 
-
-/* PROFILE PICTURE */
-
 .profile-picture {
     width: 40px;
     height: 40px;
@@ -252,9 +256,6 @@
     background: var(--cream);
 }
 
-
-/* DISPLAY NAME */
-
 .profile-display-name {
     white-space: nowrap;
 
@@ -266,1024 +267,108 @@
 
 
 /* =========================================================
-   MAP + UPCOMING FEATURE
+   DASHBOARD TABS
 ========================================================= */
 
-.dashboard-feature {
-    min-height: 286px;
+.dashboard-tab {
+    width: 100%;
+    box-sizing: border-box;
+}
 
+.dashboard-tab[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   HOME LAYOUT
+========================================================= */
+
+#home-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.dashboard-row {
     display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.85fr);
+    gap: 24px;
+    width: 100%;
+}
 
-    grid-template-columns:
-        minmax(0, 1.55fr)
-        minmax(310px, 0.85fr);
+.panel-large,
+.panel-small {
+    min-width: 0;
+}
 
-    overflow: hidden;
 
-    margin-bottom: 25px;
+/* =========================================================
+   GENERIC DASHBOARD PANEL
+========================================================= */
 
-    background: rgba(255, 255, 255, 0.9);
+.dashboard-panel {
+    width: 100%;
+    box-sizing: border-box;
 
+    background: var(--card-bg);
     border: 1px solid var(--border-light);
-
     border-radius: var(--radius-lg);
 
     box-shadow: var(--shadow-soft);
+
+    padding: 24px;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.dashboard-panel:hover {
+    box-shadow: var(--shadow-hover);
 }
 
 
 /* =========================================================
-   MAP
+   PANEL HEADER
 ========================================================= */
 
-.map-feature {
-    position: relative;
-
-    min-width: 0;
-
-    overflow: hidden;
-
-    padding: 27px 29px;
-
-    background: #e7ecdf;
-}
-
-.map-background {
-    position: absolute;
-    inset: 0;
-
-    overflow: hidden;
-
-    opacity: 0.82;
-}
-
-.map-background::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            transparent 0 66px,
-            rgba(185, 193, 180, 0.4) 67px 69px
-        ),
-        repeating-linear-gradient(
-            0deg,
-            transparent 0 52px,
-            rgba(185, 193, 180, 0.38) 53px 55px
-        );
-}
-
-.map-road {
-    position: absolute;
-
-    height: 4px;
-
-    background: rgba(255, 255, 255, 0.95);
-
-    border-radius: 10px;
-
-    box-shadow: 0 0 0 2px rgba(193, 199, 187, 0.35);
-}
-
-.road-one {
-    width: 110%;
-    left: -8%;
-    top: 31%;
-
-    transform: rotate(20deg);
-}
-
-.road-two {
-    width: 120%;
-    left: -5%;
-    top: 62%;
-
-    transform: rotate(-13deg);
-}
-
-.road-three {
-    width: 85%;
-    left: 24%;
-    top: 47%;
-
-    transform: rotate(69deg);
-}
-
-.map-river {
-    position: absolute;
-
-    width: 115%;
-    height: 85px;
-
-    left: -8%;
-    top: 53%;
-
-    transform: rotate(-12deg);
-
-    border-radius: 50%;
-
-    background: rgba(181, 216, 225, 0.75);
-
-    border: 10px solid rgba(255, 255, 255, 0.65);
-}
-
-.map-content {
-    position: relative;
-    z-index: 5;
-}
-
-.map-title {
+.panel-header {
     display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    color: var(--navy);
-
-    font-size: 31px;
-    letter-spacing: -1px;
-}
-
-.map-title strong {
-    color: var(--gold);
-}
-
-.map-title-icon {
-    width: 31px;
-    height: 31px;
-
-    display: grid;
-    place-items: center;
-}
-
-.map-title-icon svg {
-    width: 31px;
-    height: 31px;
-
-    color: var(--gold);
-}
-
-.map-subtitle {
-    margin: 4px 0 14px 10px;
-
-    color: #53657b;
-
-    font-size: 15px;
-}
-
-.location-selector {
-    width: 360px;
-    max-width: 100%;
-    height: 43px;
-
-    display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-
-    padding: 0 14px;
-
-    color: var(--text-primary);
-
-    background: rgba(255, 255, 255, 0.94);
-
-    border: 1px solid #e1ddd4;
-
-    border-radius: var(--radius-pill);
-
-    font-size: 13px;
-    font-weight: 600;
-
-    box-shadow:
-        0 4px 12px rgba(50, 70, 60, 0.06);
-}
-
-.location-selector > span {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-}
-
-.location-selector svg {
-    width: 18px;
-    height: 18px;
-
-    stroke-width: 1.8;
-}
-
-
-/* =========================================================
-   MAP PINS
-========================================================= */
-
-.map-pin {
-    position: absolute;
-    z-index: 6;
-
-    width: 38px;
-    height: 38px;
-
-    display: grid;
-    place-items: center;
-
-    border-radius:
-        50% 50% 50% 5px;
-
-    transform: rotate(-45deg);
-
-    background: var(--navy);
-
-    border: 5px solid rgba(255, 255, 255, 0.85);
-
-    box-shadow:
-        0 7px 14px rgba(22, 50, 82, 0.2);
-}
-
-.map-pin svg {
-    width: 17px;
-    height: 17px;
-
-    color: var(--white);
-
-    transform: rotate(45deg);
-
-    stroke-width: 2;
-}
-
-.map-pin-main {
-    left: 58%;
-    top: 40%;
-
-    width: 51px;
-    height: 51px;
-
-    border-width: 7px;
-
-    background: var(--navy);
-
-    border-color: rgba(245, 185, 76, 0.55);
-
-    box-shadow:
-        0 0 0 13px rgba(245, 185, 76, 0.18);
-}
-
-.map-pin-main svg {
-    width: 21px;
-    height: 21px;
-}
-
-.map-pin-one {
-    left: 42%;
-    top: 27%;
-}
-
-.map-pin-two {
-    left: 76%;
-    top: 25%;
-}
-
-.map-pin-three {
-    left: 78%;
-    top: 69%;
-}
-
-
-/* =========================================================
-   LANDMARK MARKERS
-========================================================= */
-
-.landmark-marker {
-    position: absolute;
-    z-index: 6;
-
-    width: 35px;
-    height: 35px;
-
-    display: grid;
-    place-items: center;
-
-    color: var(--navy);
-
-    background: var(--white);
-
-    border: 2px solid rgba(32, 58, 104, 0.16);
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 4px 10px rgba(20, 50, 70, 0.13);
-}
-
-.landmark-marker svg {
-    width: 17px;
-    height: 17px;
-
-    stroke-width: 1.8;
-}
-
-.landmark-one {
-    left: 68%;
-    top: 49%;
-}
-
-.landmark-two {
-    left: 80%;
-    top: 39%;
-}
-
-
-/* =========================================================
-   MAP CATEGORIES
-========================================================= */
-
-.map-categories {
-    position: absolute;
-
-    z-index: 7;
-
-    left: 29px;
-    bottom: 27px;
-
-    display: flex;
-    gap: 10px;
-}
-
-.map-category {
-    width: 70px;
-    height: 57px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 4px;
-
-    color: var(--navy);
-
-    background: rgba(255, 255, 255, 0.91);
-
-    border: 1px solid #deddd7;
-
-    border-radius: 28px;
-
-    font-size: 10px;
-    font-weight: 600;
-}
-
-.map-category.active {
-    color: #b76c00;
-
-    background: #fff1d2;
-
-    border-color: #f2c675;
-}
-
-.map-category svg {
-    width: 19px;
-    height: 19px;
-
-    stroke-width: 1.8;
-}
-
-
-/* =========================================================
-   UPCOMING
-========================================================= */
-
-.upcoming-panel {
-    padding: 20px;
-
-    background: rgba(255, 253, 249, 0.95);
-
-    border-left: 1px solid var(--border-light);
-}
-
-.upcoming-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 14px;
-}
-
-.upcoming-header h2 {
-    display: flex;
-    align-items: center;
-
-    gap: 9px;
-
-    color: var(--navy);
-
-    font-size: 17px;
-}
-
-.upcoming-header h2 svg {
-    width: 20px;
-    height: 20px;
-
-    stroke-width: 1.8;
-}
-
-.upcoming-header a {
-    color: #d58512;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    text-decoration: none;
-}
-
-.appointment-card {
-    padding: 12px;
-
-    display: grid;
-
-    grid-template-columns: 52px 62px 1fr;
-
-    align-items: center;
-
-    gap: 11px;
-
-    background: #fffdfa;
-
-    border: 1px solid var(--border-light);
-
-    border-radius: 15px;
-}
-
-.appointment-date {
-    text-align: center;
-
-    color: var(--navy);
-}
-
-.appointment-date span {
-    display: block;
-
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.appointment-date strong {
-    display: block;
-
-    font-size: 22px;
-    line-height: 1.1;
-}
-
-.appointment-date small {
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.appointment-image {
-    width: 62px;
-    height: 62px;
-
-    object-fit: cover;
-
-    border-radius: 9px;
-}
-
-.appointment-details h3 {
-    margin-bottom: 4px;
-
-    color: var(--navy);
-
-    font-size: 14px;
-}
-
-.appointment-time {
-    color: var(--text-primary);
-
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.appointment-location {
-    margin-top: 5px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 4px;
-
-    color: var(--text-secondary);
-
-    font-size: 10px;
-}
-
-.appointment-location svg {
-    width: 13px;
-    height: 13px;
-
-    stroke-width: 1.8;
-}
-
-.appointment-status {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 5px;
-
-    margin-top: 6px;
-
-    padding: 4px 8px;
-
-    border-radius: 10px;
-
-    background: #eaf6eb;
-
-    color: var(--success);
-
-    font-size: 9px;
-    font-weight: 700;
-}
-
-.appointment-status::before {
-    content: "";
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: var(--success);
-}
-
-.schedule-summary {
-    margin-top: 12px;
-
-    padding: 11px 12px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    color: var(--text-primary);
-
-    border-radius: 13px;
-
-    background: #f7f2e9;
-
-    text-decoration: none;
-}
-
-.schedule-summary-icon {
-    display: grid;
-    place-items: center;
-}
-
-.schedule-summary-icon svg {
-    width: 23px;
-    height: 23px;
-
-    color: var(--gold);
-
-    stroke-width: 1.8;
-}
-
-.schedule-summary > span:nth-child(2) {
-    flex: 1;
-}
-
-.schedule-summary strong {
-    display: block;
-
-    font-size: 12px;
-}
-
-.schedule-summary small {
-    display: block;
-
-    margin-top: 2px;
-
-    color: var(--text-secondary);
-
-    font-size: 9px;
-}
-
-.summary-arrow {
-    width: 17px;
-    height: 17px;
-
-    stroke-width: 1.8;
-}
-
-
-/* =========================================================
-   LISTINGS
-========================================================= */
-
-.listing-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
 
     gap: 20px;
+    margin-bottom: 22px;
 }
 
-.listing-card {
-    overflow: hidden;
-
-    background: rgba(255, 255, 255, 0.94);
-
-    border: 1px solid var(--border-light);
-
-    border-radius: 17px;
-
-    box-shadow:
-        0 7px 20px rgba(30, 48, 70, 0.07);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.listing-card:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 28px rgba(30, 48, 70, 0.11);
-}
-
-.listing-image-wrapper {
-    height: 165px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    background: #ded8ce;
-}
-
-.listing-image {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-}
-
-.listing-availability {
-    position: absolute;
-
-    top: 10px;
-    left: 10px;
-
-    padding: 6px 9px;
-
-    border-radius: 12px;
-
-    background: #fff8ed;
-
-    color: #e04e2d;
-
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.save-listing {
-    position: absolute;
-
-    top: 9px;
-    right: 9px;
-
-    width: 31px;
-    height: 31px;
-
-    display: grid;
-    place-items: center;
-
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.95);
-
-    color: var(--navy);
-
-    box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.09);
-}
-
-.save-listing svg {
-    width: 17px;
-    height: 17px;
-
-    stroke-width: 1.8;
-}
-
-.listing-info {
-    padding: 12px 14px 14px;
-}
-
-.listing-heading-row {
+.panel-title-group {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
-    gap: 8px;
-}
-
-.listing-heading-row h2 {
-    color: var(--navy);
-
-    font-size: 15px;
-}
-
-.listing-price {
-    flex-shrink: 0;
-
-    padding: 7px 9px;
-
-    border-radius: 15px;
-
-    background: #fbf0de;
-
-    color: var(--navy);
-
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.listing-price small {
-    color: #7d7c78;
-
-    font-size: 9px;
-    font-weight: 500;
-}
-
-.listing-location {
-    display: flex;
-    align-items: center;
-
-    gap: 5px;
-
-    margin-top: 5px;
-
-    color: #657287;
-
-    font-size: 10px;
-}
-
-.listing-location svg {
-    width: 14px;
-    height: 14px;
-
-    color: var(--navy);
-
-    stroke-width: 1.8;
-}
-
-.listing-features {
-    display: flex;
-
-    gap: 6px;
-
-    margin-top: 11px;
-}
-
-.listing-features span {
-    flex: 1;
-    min-width: 0;
-
-    padding: 6px 7px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    white-space: nowrap;
-
-    border-radius: 12px;
-
-    background: #f7f6f2;
-
-    color: #536176;
-
-    font-size: 8px;
-    font-weight: 600;
-}
-
-/* =========================================================
-   RENTAL HISTORY
-========================================================= */
-
-
-/* =========================
-   SECTION HEADING
-========================= */
-
-#rentals-section {
-    width: 100%;
-}
-
-/* =========================
-   CURRENT RENTAL
-========================= */
-
-.current-rental {
-    width: 100%;
-    margin-bottom: 32px;
-}
-
-.current-rental-card {
-    display: flex;
-
-    width: 100%;
-    height: 285px;
-
-    background: var(--white);
-
-    border: 1px solid var(--border-light);
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    box-shadow: var(--shadow-card);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.current-rental-card:hover {
-    transform: translateY(-2px);
-    border: 1px solid var(--gold);
-    box-shadow: var(--shadow-card);
-}
-
-
-/* =========================
-   CURRENT RENTAL IMAGE
-========================= */
-
-.current-rental-image {
-    position: relative;
-
-    width: 34%;
-    min-width: 300px;
-
-    overflow: hidden;
-}
-
-.current-rental-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    display: block;
-}
-
-
-/* =========================
-   RENTAL STATUS
-========================= */
-
-.rental-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-
-    padding: 7px 11px;
-
-    border-radius: 999px;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-.rental-status.active {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-
-    background: rgba(255, 255, 255, 0.94);
-    color: var(--success);
-
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-}
-
-.status-dot {
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: var(--success);
-}
-
-
-/* =========================
-   UNIT LABEL
-========================= */
-
-.rental-unit {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-
-    padding: 7px 11px;
-
-    border-radius: 8px;
-
-    background: rgba(32, 58, 104, 0.9);
-    color: var(--white);
-
-    font-size: 11px;
-    font-weight: 600;
-}
-
-
-/* =========================
-   CURRENT RENTAL INFO
-========================= */
-
-.current-rental-info {
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-
-    padding: 18px 25px;
-}
-
-
-/* =========================
-   RENTAL TITLE
-========================= */
-
-.rental-title-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    margin-bottom: 18px;
-}
-
-.rental-title-row h2 {
-    margin: 0 0 7px;
-
-    color: var(--navy);
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.rental-location {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    margin: 0;
-
-    color: var(--text-secondary);
-    font-size: 13px;
-}
-
-.rental-location svg {
-    width: 16px;
-    height: 16px;
-
-    color: var(--navy);
-
-    stroke-width: 1.8;
-}
-
-
-/* =========================
-   RENTAL DETAILS GRID
-========================= */
-
-.rental-details-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 18px 30px;
-
-    padding: 20px 0;
-
-    border-top: 1px solid var(--border-light);
-    border-bottom: 1px solid var(--border-light);
-}
-
-.rental-detail {
-    display: flex;
-    align-items: flex-start;
-
     gap: 11px;
 }
 
-.rental-detail-icon {
-    flex-shrink: 0;
+.panel-title-group h2,
+.panel-header h2 {
+    margin: 0;
 
+    color: var(--text-main);
+
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.panel-header p {
+    margin: 6px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.panel-title-icon {
     width: 34px;
     height: 34px;
 
@@ -1291,455 +376,1085 @@
     align-items: center;
     justify-content: center;
 
-    background: rgba(32, 58, 104, 0.07);
+    flex-shrink: 0;
 
-    border-radius: 9px;
+    background: rgba(32, 58, 104, 0.08);
+    color: var(--landlord-navy);
 
-    color: var(--navy);
-}
-
-.rental-detail-icon svg {
-    width: 17px;
-    height: 17px;
-
-    stroke-width: 1.7;
-}
-
-.rental-detail > div:last-child {
-    display: flex;
-    flex-direction: column;
-
-    gap: 3px;
-}
-
-.detail-label {
-    color: var(--text-secondary);
-
-    font-size: 10px;
-    font-weight: 500;
-}
-
-.rental-detail strong {
-    color: var(--text-primary);
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.rental-countdown {
-    color: var(--gold);
-
-    font-size: 10px;
-    font-weight: 600;
-}
-
-
-/* =========================
-   CURRENT RENTAL ACTION
-========================= */
-
-.rental-actions {
-    display: flex;
-    justify-content: flex-end;
-
-    margin-top: auto;
-    padding-top: 18px;
-}
-
-.rental-details-button {
-    display: flex;
-    align-items: center;
-    margin: -10px 10px;
-
-    padding: 8px 10px;
-
-    border: 0;
-    border-radius: 8px;
-
-    background: transparent;
-    color: var(--navy);
-
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-
-    white-space: nowrap;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
-}
-
-.rental-details-button svg {
-    width: 13px;
-    height: 13px;
-
-    stroke-width: 2;
-}
-
-.rental-details-button:hover {
-    background: rgba(245, 185, 76, 0.12);
-    color: var(--navy-dark);
-    border: 1px solid var(--gold);
-}
-
-
-/* =========================================================
-   PAST RENTALS
-========================================================= */
-
-.past-rentals {
-    width: 100%;
-}
-
-
-/* =========================
-   PAST RENTALS HEADING
-========================= */
-
-.past-rentals-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 14px;
-}
-
-.past-rentals-title {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-}
-
-.past-rentals-title svg {
-    width: 18px;
-    height: 18px;
-
-    color: var(--navy);
-
-    stroke-width: 1.8;
-}
-
-.past-rentals-title h2 {
-    margin: 0;
-
-    color: var(--navy);
+    border-radius: 10px;
 
     font-size: 17px;
     font-weight: 700;
 }
 
+.panel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
 
-/* =========================
-   PAST RENTALS LIST
-========================= */
+    color: var(--landlord-navy);
 
-.past-rentals-list {
-    display: flex;
-    flex-direction: column;
+    font-size: 13px;
+    font-weight: 700;
 
-    gap: 12px;
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        gap 0.2s ease;
+}
+
+.panel-link:hover {
+    color: var(--landlord-gold);
+    gap: 10px;
 }
 
 
-/* =========================
-   PAST RENTAL CARD
-========================= */
+/* =========================================================
+   SECTION HEADINGS (matches renter dashboard)
+========================================================= */
 
-.past-rental-card {
+.section-heading,
+.inquiry-page-header,
+.reports-page-header .reports-title,
+.listings-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 16px;
+}
+
+.section-heading h1,
+.inquiry-page-header h1,
+.reports-page-header .reports-title h1,
+.listings-heading h1 {
+    margin: 0;
+    font-family: Georgia, Times New Roman, serif;
+    color: var(--primary-color);
+    font-size: 32px;
+    font-weight: 750;
+    line-height: 1.2;
+}
+
+.section-heading p,
+.inquiry-page-header p,
+.reports-page-header .reports-title p,
+.listings-heading p {
+    margin: 8px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   KPI GRID
+========================================================= */
+
+.kpi-grid {
     display: grid;
 
-    grid-template-columns:
-        120px
-        minmax(180px, 1.5fr)
-        minmax(130px, 1fr)
-        minmax(130px, 0.8fr)
-        minmax(130px, 1fr)
-        auto;
-
-    align-items: center;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
     gap: 18px;
 
-    min-height: 105px;
+    width: 100%;
+}
 
-    padding: 12px 16px 12px 12px;
 
-    background: var(--white);
+/* =========================================================
+   KPI CARD
+========================================================= */
+
+.kpi-card {
+    position: relative;
+
+    min-height: 100px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    box-sizing: border-box;
+
+    padding: 22px;
+
+    background: var(--card-bg);
 
     border: 1px solid var(--border-light);
-    border-radius: 14px;
+    border-radius: var(--radius-lg);
 
     box-shadow: var(--shadow-soft);
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.past-rental-card:hover {
-    transform: translateY(-2px);
-    border: 1px solid var(--gold);
-}
-
-
-/* =========================
-   PAST RENTAL IMAGE
-========================= */
-
-.past-rental-image {
-    width: 120px;
-    height: 80px;
-
     overflow: hidden;
 
-    border-radius: 10px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
-.past-rental-image img {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
+.kpi-content {
+    display: flex;
+    flex-direction: column;
 
-/* =========================
-   PAST RENTAL PROPERTY
-========================= */
-
-.past-rental-info {
     min-width: 0;
 }
 
-.past-rental-info h3 {
-    margin: 0 0 7px;
-
-    overflow: hidden;
-
-    color: var(--navy);
-
-    font-size: 14px;
-    font-weight: 700;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.past-rental-location {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-
-    margin: 0;
+.kpi-label {
+    margin-bottom: 8px;
 
     color: var(--text-secondary);
 
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.kpi-value {
+    display: block;
+
+    color: var(--text-main);
+
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.kpi-description {
+    margin-top: 8px;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.kpi-trend {
+    margin-top: 10px;
+
+    color: var(--success);
+
     font-size: 11px;
-}
-
-.past-rental-location svg {
-    flex-shrink: 0;
-
-    width: 14px;
-    height: 14px;
-
-    stroke-width: 1.8;
+    font-weight: 700;
 }
 
 
-/* =========================
-   PAST RENTAL DETAILS
-========================= */
+/* =========================================================
+   KPI ACCENTS
+========================================================= */
 
-.past-rental-detail {
+.kpi-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: var(--landlord-navy);
+}
+
+.kpi-listings::before {
+    background: var(--landlord-navy);
+}
+
+.kpi-units::before {
+    background: var(--landlord-gold);
+}
+
+.kpi-inquiries::before {
+    background: #5577a8;
+}
+
+.kpi-receivables::before {
+    background: var(--success);
+}
+
+
+/* =========================================================
+   INQUIRY KPI
+========================================================= */
+
+.inquiry-stats {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-top: 7px;
+}
+
+.inquiry-stats > div:not(.inquiry-divider) {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 5px;
 }
 
-.past-rental-detail span {
+.inquiry-stats span {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.inquiry-divider {
+    width: 1px;
+    height: 42px;
+
+    background: var(--border-light);
+}
+
+.pending-number {
+    color: var(--warning);
+}
+
+
+/* =========================================================
+   RECEIVABLES KPI
+========================================================= */
+
+.receivable-value {
+    font-size: 25px;
+}
+
+.kpi-action {
+    align-self: flex-start;
+
+    margin-top: 13px;
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: var(--landlord-navy);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.kpi-action:hover {
+    color: var(--landlord-gold);
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   UNIT DONUT
+========================================================= */
+
+.unit-donut-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+.unit-donut {
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: conic-gradient(
+        var(--landlord-navy) 0deg 240deg,
+        #e7e9ee 240deg 360deg
+    );
+
+    position: relative;
+}
+
+.unit-donut::before {
+    content: "";
+
+    position: absolute;
+
+    width: 57px;
+    height: 57px;
+
+    background: var(--card-bg);
+
+    border-radius: 50%;
+}
+
+.unit-donut-center {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 1;
+}
+
+.unit-donut-center strong {
+    color: var(--text-main);
+
+    font-size: 18px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+.unit-donut-center span {
+    margin-top: 3px;
+
+    color: var(--text-muted);
+
+    font-size: 8px;
+}
+
+.unit-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    width: max-content;
+
     color: var(--text-secondary);
 
     font-size: 9px;
-    font-weight: 500;
 }
 
-.past-rental-detail strong {
-    color: var(--text-primary);
-
-    font-size: 11px;
-    font-weight: 600;
-}
-
-
-/* =========================
-   PAST RENTAL STATUS
-========================= */
-
-.rental-status.completed {
-    background: rgba(61, 139, 92, 0.10);
-    color: var(--success);
-}
-
-.rental-status.terminated {
-    background: rgba(201, 75, 75, 0.10);
-    color: var(--error);
-}
-
-
-/* =========================
-   PAST RENTAL BUTTON
-========================= */
-
-.past-rental-button {
+.unit-legend span {
     display: flex;
     align-items: center;
     gap: 5px;
+}
 
-    padding: 8px 10px;
+.legend-dot {
+    width: 7px;
+    height: 7px;
 
-    border: 0;
-    border-radius: 8px;
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+.legend-dot.occupied {
+    background: var(--landlord-navy);
+}
+
+.legend-dot.vacant {
+    background: #dfe2e8;
+}
+
+
+/* =========================================================
+   ACTIVE RENTERS TABS
+========================================================= */
+
+.renter-tabs {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    margin-bottom: 18px;
+
+    padding: 4px;
+
+    background: #f5f6f8;
+
+    border-radius: 11px;
+
+    width: fit-content;
+    max-width: 100%;
+
+    overflow-x: auto;
+}
+
+.renter-tab {
+    border: none;
+
+    padding: 8px 13px;
 
     background: transparent;
-    color: var(--navy);
+
+    color: var(--text-secondary);
+
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.renter-tab span {
+    color: inherit;
+    opacity: 0.7;
+}
+
+.renter-tab:hover {
+    color: var(--landlord-navy);
+}
+
+.renter-tab.active {
+    background: var(--card-bg);
+    color: var(--landlord-navy);
+
+    box-shadow: 0 2px 7px rgba(32, 58, 104, 0.08);
+}
+
+
+/* =========================================================
+   RENTER TABLE
+========================================================= */
+
+.renter-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+}
+
+.renter-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 780px;
+}
+
+.renter-table thead {
+    background: #f8f9fb;
+}
+
+.renter-table th {
+    padding: 12px 14px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+    font-weight: 750;
+
+    text-align: left;
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+
+    white-space: nowrap;
+
+    border-bottom: 1px solid var(--border-light);
+}
+
+.renter-table td {
+    padding: 14px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    border-bottom: 1px solid var(--border-light);
+
+    vertical-align: middle;
+}
+
+.renter-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.renter-table tbody tr:hover {
+    background: #fafbfd;
+}
+
+.renter-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   TENANT CELL
+========================================================= */
+
+.tenant-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tenant-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid #f0f2f5;
+}
+
+.tenant-cell > div {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.tenant-cell strong {
+    color: var(--text-main);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.tenant-cell span {
+    margin-top: 3px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PROPERTY CELL
+========================================================= */
+
+.property-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.property-cell strong {
+    color: var(--text-main);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.property-cell span {
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 750;
+}
+
+.status-badge.active {
+    background: var(--success-light);
+    color: var(--success);
+}
+
+.status-badge.pending {
+    background: var(--warning-light);
+    color: var(--warning);
+}
+
+.status-badge.terminated {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+
+/* =========================================================
+   TERMINATION WARNING
+========================================================= */
+
+.termination-warning {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.termination-warning span {
+    color: var(--warning);
+    font-weight: 700;
+}
+
+.termination-warning small {
+    color: var(--warning);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   WAITLIST
+========================================================= */
+
+.waitlist {
+    display: flex;
+    flex-direction: column;
+}
+
+.waitlist-item {
+    display: grid;
+
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid var(--border-light);
+}
+
+.waitlist-item:first-child {
+    padding-top: 0;
+}
+
+.waitlist-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.waitlist-avatar {
+    width: 42px;
+    height: 42px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid #f0f2f5;
+}
+
+.waitlist-renter {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+
+    gap: 3px;
+}
+
+.waitlist-renter strong {
+    color: var(--text-main);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.waitlist-renter span {
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.waitlist-date {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+.waitlist-date span {
+    color: var(--text-muted);
+
+    font-size: 9px;
+}
+
+.waitlist-date strong {
+    color: var(--text-secondary);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   NOTIFY BUTTON
+========================================================= */
+
+.notify-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    min-width: 75px;
+
+    padding: 7px 10px;
+
+    background: rgba(32, 58, 104, 0.07);
+
+    border: 1px solid rgba(32, 58, 104, 0.12);
+
+    border-radius: 8px;
+
+    color: var(--landlord-navy);
 
     font-family: inherit;
     font-size: 10px;
-    font-weight: 600;
-
-    white-space: nowrap;
+    font-weight: 750;
 
     cursor: pointer;
 
     transition:
         background 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-.past-rental-button svg {
-    width: 13px;
-    height: 13px;
+.notify-button:hover {
+    background: var(--landlord-navy);
+    color: #ffffff;
 
-    stroke-width: 2;
-}
-
-.past-rental-button:hover {
-    background: rgba(245, 185, 76, 0.12);
-    color: var(--navy-dark);
-    border: 1px solid var(--gold);
+    transform: translateY(-1px);
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   LISTING PERFORMANCE
 ========================================================= */
 
-@media (max-width: 1200px) {
+.performance-period {
+    padding: 7px 28px 7px 10px;
 
-    .current-rental-card {
-        min-height: 280px;
-    }
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
 
-    .current-rental-image {
-        width: 31%;
-        min-width: 250px;
-    }
+    background: #ffffff;
 
-    .past-rental-card {
-        grid-template-columns:
-            100px
-            minmax(150px, 1.4fr)
-            minmax(110px, 1fr)
-            minmax(110px, 1fr)
-            auto
-            auto;
+    color: var(--text-secondary);
 
-        gap: 12px;
-    }
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
 
-    .past-rental-image {
-        width: 100px;
-        height: 72px;
-    }
+    cursor: pointer;
 
+    outline: none;
 }
 
-
-@media (max-width: 1000px) {
-
-    .current-rental-card {
-        flex-direction: column;
-    }
-
-    .current-rental-image {
-        width: 100%;
-        height: 230px;
-        min-width: 0;
-    }
-
-    .past-rental-card {
-        grid-template-columns:
-            100px
-            1fr
-            auto;
-
-        row-gap: 12px;
-    }
-
-    .past-rental-detail {
-        display: none;
-    }
-
+.performance-period:focus {
+    border-color: rgba(32, 58, 104, 0.4);
 }
 
+.performance-stats {
+    display: grid;
 
-@media (max-width: 700px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
-    #rentals-section .section-heading h1 {
-        font-size: 21px;
-    }
+    gap: 10px;
 
-    .current-rental-info {
-        padding: 22px;
-    }
-
-    .rental-details-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .rental-actions {
-        justify-content: stretch;
-    }
-
-    .rental-details-button {
-        width: 100%;
-    }
-
-    .past-rental-card {
-        grid-template-columns: 80px 1fr auto;
-        gap: 11px;
-    }
-
-    .past-rental-image {
-        width: 80px;
-        height: 65px;
-    }
-
-    .past-rental-info h3 {
-        font-size: 12px;
-    }
-
+    margin-bottom: 25px;
 }
+
+.performance-stat {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 11px;
+
+    background: #f8f9fb;
+
+    border-radius: 11px;
+}
+
+.performance-stat-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: rgba(32, 58, 104, 0.08);
+
+    border-radius: 8px;
+
+    color: var(--landlord-navy);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.performance-stat > div {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.performance-stat strong {
+    color: var(--text-main);
+
+    font-size: 16px;
+    font-weight: 800;
+
+    line-height: 1.1;
+}
+
+.performance-stat > div > span {
+    margin-top: 3px;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    white-space: nowrap;
+}
+
+.performance-stat small {
+    margin-top: 3px;
+
+    font-size: 9px;
+    font-weight: 750;
+}
+
+.performance-stat small.positive {
+    color: var(--success);
+}
+
 
 /* =========================================================
-   RESPONSIVE
+   PERFORMANCE CHART
+========================================================= */
+
+.performance-chart {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 35px minmax(0, 1fr);
+
+    column-gap: 10px;
+
+    width: 100%;
+}
+
+.chart-y-axis {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 3px 0 24px;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    text-align: right;
+}
+
+.chart-area {
+    position: relative;
+
+    min-width: 0;
+
+    height: 220px;
+}
+
+.chart-grid {
+    position: absolute;
+
+    inset: 0 0 28px 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    pointer-events: none;
+}
+
+.chart-grid span {
+    width: 100%;
+    height: 1px;
+
+    background: var(--border-light);
+}
+
+.performance-line-chart {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: calc(100% - 28px);
+
+    overflow: visible;
+}
+
+.chart-line {
+    fill: none;
+
+    stroke-width: 3;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    vector-effect: non-scaling-stroke;
+}
+
+.chart-views {
+    stroke: var(--landlord-navy);
+}
+
+.chart-saves {
+    stroke: var(--landlord-gold);
+}
+
+.chart-inquiries {
+    stroke: #6384b4;
+}
+
+.chart-rentals {
+    stroke: var(--success);
+}
+
+.chart-x-axis {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+}
+
+.chart-legend {
+    grid-column: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-top: 17px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+}
+
+.chart-legend span {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.chart-dot {
+    width: 7px;
+    height: 7px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+.chart-dot.views {
+    background: var(--landlord-navy);
+}
+
+.chart-dot.saves {
+    background: var(--landlord-gold);
+}
+
+.chart-dot.inquiries {
+    background: #6384b4;
+}
+
+.chart-dot.rentals {
+    background: var(--success);
+}
+
+
+/* =========================================================
+   CALENDAR PANEL COMPATIBILITY
+========================================================= */
+
+.panel-small > * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.panel-small .dashboard-panel {
+    height: 100%;
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1250px (matches renter dashboard)
 ========================================================= */
 
 @media (max-width: 1250px) {
@@ -1747,35 +1462,72 @@
     .landlord-dashboard {
         padding: 30px 28px 40px;
     }
-
-    .listing-grid {
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-    }
-
-    .dashboard-feature {
-        grid-template-columns: 1fr;
-    }
-
-    .upcoming-panel {
-        border-left: none;
-        border-top: 1px solid var(--border-light);
-    }
-
 }
+
+
+/* =========================================================
+   RESPONSIVE — LARGE TABLETS
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .performance-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 950px
+========================================================= */
 
 @media (max-width: 950px) {
 
-    .landlord-dashboard{
+    .landlord-dashboard {
         padding: 25px 20px 35px;
     }
+}
 
-    .listing-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+
+/* =========================================================
+   RESPONSIVE — TABLETS
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .dashboard-panel {
+        padding: 20px;
     }
 
+    .kpi-card {
+        min-height: 145px;
+    }
+
+    .waitlist-item {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .waitlist-date {
+        display: none;
+    }
+
+    .notify-button {
+        min-width: 68px;
+    }
 }
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
 
 @media (max-width: 650px) {
 
@@ -1792,34 +1544,109 @@
         order: 1;
     }
 
-    .filter-button,
-    .looka-button {
+    .filter-button {
+        flex: 1;
+    }
+}
+
+@media (max-width: 620px) {
+
+    #home-section {
+        gap: 16px;
+    }
+
+    .dashboard-row {
+        gap: 16px;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .kpi-card {
+        min-height: 130px;
+        padding: 18px;
+    }
+
+    .kpi-value {
+        font-size: 26px;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .panel-header .panel-link,
+    .panel-header .performance-period {
+        align-self: flex-start;
+    }
+
+    .renter-tabs {
+        width: 100%;
+    }
+
+    .renter-tab {
         flex: 1;
     }
 
-    .map-feature {
-        min-height: 300px;
+    .performance-stats {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .listing-grid {
+    .performance-chart {
+        grid-template-columns: 30px minmax(0, 1fr);
+    }
+
+    .chart-legend {
+        justify-content: flex-start;
+    }
+
+    .waitlist-item {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .waitlist-item .notify-button {
+        grid-column: 2;
+        justify-self: start;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .dashboard-panel {
+        padding: 16px;
+    }
+
+    .performance-stats {
         grid-template-columns: 1fr;
     }
 
-    .listing-image-wrapper {
-        height: 210px;
+    .performance-stat {
+        padding: 10px;
     }
 
-    .map-categories {
-        left: 15px;
-        bottom: 15px;
-
-        max-width: calc(100% - 30px);
-
-        overflow-x: auto;
+    .unit-donut-wrapper {
+        transform: scale(0.9);
+        transform-origin: right center;
     }
 
-    .map-category {
-        flex-shrink: 0;
+    .waitlist-avatar {
+        width: 36px;
+        height: 36px;
     }
 
+    .waitlist-renter strong {
+        font-size: 11px;
+    }
+
+    .notify-button {
+        width: 100%;
+    }
 }

@@ -270,3 +270,10 @@
         width: 100%;
     }
 }
+
+.login-error {
+    margin: 0 0 12px;
+    color: #c0392b;
+    font-size: 12px;
+    text-align: center;
+}

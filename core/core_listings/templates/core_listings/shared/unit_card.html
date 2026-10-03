@@ -1,0 +1,119 @@
+<div class="unit-card"
+     data-unit-id="{{ unit.pk }}"
+     data-unit-status="{{ unit.status }}">
+
+    <!-- Image -->
+    <div class="unit-thumbnail">
+
+        {% with photo=unit.pictures.first %}
+
+            {% if photo and photo.image %}
+
+                <img src="{{ photo.image.url }}"
+                     alt="{{ unit.unit_number }}">
+
+            {% else %}
+
+                <div class="unit-thumbnail-placeholder">
+                    ⌂
+                </div>
+
+            {% endif %}
+
+        {% endwith %}
+
+    </div>
+
+
+    <!-- Unit Information -->
+    <div class="unit-info">
+
+        <a href="{% url 'core_listings:unit_detail' unit.pk %}"
+           class="unit-number">
+
+            {{ unit.unit_number }}
+
+        </a>
+
+
+        <div class="unit-details">
+
+            <span>
+                ▧ {{ unit.area_sqm }} sqm
+            </span>
+
+            <span>
+                🛏 {{ unit.bedrooms }}
+                {% if unit.bedrooms == 1 %}
+                    Bedroom
+                {% else %}
+                    Bedrooms
+                {% endif %}
+            </span>
+
+            <span>
+                {% if unit.furnished %}
+                    ▣ Furnished
+                {% else %}
+                    ▣ Unfurnished
+                {% endif %}
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Price -->
+    <div class="unit-price">
+
+        ₱{{ unit.price|floatformat:0 }}
+        <small>/ month</small>
+
+    </div>
+
+
+    <!-- Status -->
+    <div class="unit-status">
+
+        {% if unit.status == 'available' %}
+
+            <span class="status-pill status-available">
+                <span class="status-dot"></span>
+                Available
+            </span>
+
+        {% else %}
+
+            <span class="status-pill status-occupied">
+                <span class="status-dot"></span>
+                Occupied
+            </span>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Actions -->
+    <div class="unit-actions">
+
+        <a href="{% url 'core_listings:unit_detail' unit.pk %}"
+           class="view-listing-btn">
+
+            View Listing
+
+        </a>
+
+
+        <button type="button"
+                class="more-button"
+                aria-label="More unit options">
+
+            ⋮
+
+        </button>
+
+    </div>
+
+</div>

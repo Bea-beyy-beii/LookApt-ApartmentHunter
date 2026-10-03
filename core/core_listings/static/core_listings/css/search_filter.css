@@ -1,0 +1,250 @@
+/* =========================================================
+   SEARCH + FILTER
+   ========================================================= */
+
+.listings-search-filter {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+/* ---------------------------------------------------------
+   Search
+   --------------------------------------------------------- */
+
+.listings-search {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.listings-search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #123f73;
+    font-size: 19px;
+
+    pointer-events: none;
+}
+
+.listings-search input {
+    width: 100%;
+    height: 52px;
+
+    padding: 0 20px 0 48px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e5d9c8;
+    border-radius: 28px;
+
+    background: #ffffff;
+    color: #244d75;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    box-shadow: 0 4px 12px rgba(45, 75, 105, 0.08);
+
+    transition: all 0.2s ease;
+}
+
+.listings-search input::placeholder {
+    color: #8092a5;
+}
+
+.listings-search input:focus {
+    border-color: #c58d4b;
+    box-shadow: 0 0 0 3px rgba(197, 141, 75, 0.12);
+}
+
+/* ---------------------------------------------------------
+   Filter dropdown
+   --------------------------------------------------------- */
+
+.listings-filter {
+    position: relative;
+}
+
+.filter-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+
+    height: 52px;
+    min-width: 210px;
+    padding: 0 20px;
+
+    border: 1px solid #e5d9c8;
+    border-radius: 28px;
+
+    background: #ffffff;
+    color: #173f70;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(45, 75, 105, 0.08);
+}
+
+.filter-button:hover {
+    border-color: #c58d4b;
+}
+
+.filter-icon {
+    font-size: 17px;
+}
+
+.filter-chevron {
+    font-size: 13px;
+}
+
+/* ---------------------------------------------------------
+   Filter menu
+   --------------------------------------------------------- */
+
+.filter-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+
+    z-index: 50;
+
+    min-width: 210px;
+
+    padding: 8px;
+
+    border: 1px solid #eadfce;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    box-shadow: 0 10px 30px rgba(30, 60, 90, 0.15);
+
+    display: none;
+}
+
+.filter-menu.show {
+    display: block;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 11px 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #244d75;
+
+    font-size: 14px;
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.filter-option:hover {
+    background: #f5eee3;
+}
+
+.filter-option.active {
+    background: #eaf2fa;
+    color: #123f73;
+    font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   Status tabs
+   --------------------------------------------------------- */
+
+.listing-status-filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.status-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-width: 105px;
+    height: 42px;
+
+    padding: 0 16px;
+
+    border: 1px solid #e5d9c8;
+    border-radius: 22px;
+
+    background: #ffffff;
+    color: #234f7d;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.status-filter:hover {
+    border-color: #174b7d;
+}
+
+.status-filter.active {
+    background: #123f73;
+    border-color: #123f73;
+    color: #ffffff;
+}
+
+.status-count {
+    font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+
+@media (max-width: 800px) {
+
+    .listings-search-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .listings-filter,
+    .filter-button {
+        width: 100%;
+    }
+
+    .filter-menu {
+        left: 0;
+        right: auto;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .listing-status-filters {
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+}

@@ -1,0 +1,195 @@
+{% load static %}
+
+<section class="calendar-widget dashboard-panel upcoming-panel">
+
+    <!-- HEADER -->
+    <div class="upcoming-header">
+
+        <h2>
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                aria-hidden="true"
+            >
+                <rect x="3.5" y="5" width="17" height="15.5" rx="2"/>
+                <path d="M8 3v4M16 3v4M3.5 10h17"/>
+            </svg>
+
+            Upcoming
+        </h2>
+
+        <a href="{% url 'calendar:calendar' %}">
+            View calendar →
+        </a>
+
+    </div>
+
+
+    {% if upcoming_events %}
+
+        {% with event=upcoming_events.0 %}
+
+            <!-- UPCOMING EVENT -->
+            <article class="appointment-card">
+
+                <!-- DATE -->
+                <div class="appointment-date">
+
+                    <span>
+                        {{ event.start_datetime|date:"M"|upper }}
+                    </span>
+
+                    <strong>
+                        {{ event.start_datetime|date:"d" }}
+                    </strong>
+
+                    <small>
+                        {{ event.start_datetime|date:"D" }}
+                    </small>
+
+                </div>
+
+
+                <!-- PROPERTY IMAGE -->
+                {% if event.property and event.property.image %}
+
+                    <img
+                        src="{{ event.property.image.url }}"
+                        alt="{{ event.property.name }}"
+                        class="appointment-image"
+                    >
+
+                {% else %}
+
+                    <div class="appointment-image appointment-image--placeholder">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                        >
+                            <path d="M3 10.8 12 3l9 7.8V20H3z"/>
+                            <path d="M9.5 20v-5h5v5"/>
+                        </svg>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- DETAILS -->
+                <div class="appointment-details">
+
+                    <h3>
+                        {{ event.title }}
+                    </h3>
+
+                    <div class="appointment-time">
+
+                        {{ event.start_datetime|date:"g:i A" }}
+
+                        {% if event.end_datetime %}
+                            – {{ event.end_datetime|date:"g:i A" }}
+                        {% endif %}
+
+                    </div>
+
+
+                    {% if event.property or event.location %}
+
+                        <div class="appointment-location">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/>
+                                <circle cx="12" cy="10" r="2.5"/>
+                            </svg>
+
+                            {% if event.property %}
+                                {{ event.property.name }}
+                            {% else %}
+                                {{ event.location }}
+                            {% endif %}
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <span class="appointment-status {{ event.status }}">
+                        {{ event.get_status_display }}
+                    </span>
+
+                </div>
+
+            </article>
+
+        {% endwith %}
+
+
+    {% else %}
+
+        <div class="upcoming-empty">
+
+            <strong>
+                No upcoming events
+            </strong>
+
+            <span>
+                Your upcoming appointments will appear here.
+            </span>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- SUMMARY -->
+    <a
+        href="{% url 'calendar:calendar' %}"
+        class="schedule-summary"
+    >
+
+        <span class="schedule-summary-icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+            >
+                <rect x="3.5" y="5" width="17" height="15.5" rx="2"/>
+                <path d="M8 3v4M16 3v4M3.5 10h17"/>
+            </svg>
+
+        </span>
+
+
+        <span class="schedule-summary-text">
+
+            <strong>
+                Stay on track
+            </strong>
+
+            <small>
+                View your upcoming visits and rental dates — all in one place.
+            </small>
+
+        </span>
+
+
+        <svg
+            class="summary-arrow"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+        >
+            <path d="m9 6 6 6-6 6"/>
+        </svg>
+
+    </a>
+
+</section>

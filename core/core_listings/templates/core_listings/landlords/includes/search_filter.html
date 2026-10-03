@@ -1,0 +1,71 @@
+<div class="listings-search-filter">
+
+    <!-- Search -->
+    <form method="get"
+          action="{% url 'core_listings:listings' %}"
+          class="listings-search-form">
+
+        <div class="search-box">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="text"
+                name="q"
+                value="{{ request.GET.q|default:'' }}"
+                placeholder="Search by property name, address, or unit number..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <!-- Filter -->
+        <div class="filter-dropdown">
+
+            <button type="button"
+                    class="filter-button"
+                    data-filter-toggle>
+
+                <span class="filter-icon">⚱</span>
+                <span>Filter by</span>
+                <span class="filter-chevron">⌄</span>
+
+            </button>
+
+
+            <div class="filter-menu" data-filter-menu>
+
+                <a href="?{% if request.GET.q %}q={{ request.GET.q|urlencode }}{% endif %}"
+                   class="filter-option {% if not current_filter %}active{% endif %}">
+
+                    <span>All</span>
+                    <span class="filter-count">{{ status_counts.all }}</span>
+
+                </a>
+
+
+                <a href="?status=active{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}"
+                   class="filter-option {% if current_filter == 'active' %}active{% endif %}">
+
+                    <span>Active</span>
+                    <span class="filter-count">{{ status_counts.active }}</span>
+
+                </a>
+
+
+                <a href="?status=unpublished{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}"
+                   class="filter-option {% if current_filter == 'unpublished' %}active{% endif %}">
+
+                    <span>Unpublished</span>
+                    <span class="filter-count">{{ status_counts.unpublished }}</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

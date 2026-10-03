@@ -1,0 +1,94 @@
+{% load static %}
+
+<div class="property-form-view">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#" onclick="showListingsList(); return false;">My Listings</a>
+        <span>></span>
+        <span>{% if property %}Edit Property{% else %}Create New Property{% endif %}</span>
+    </div>
+
+    <!-- Header -->
+    <div class="wizard-header">
+        <div>
+            <h1>{% if property %}Edit Property{% else %}Create New Property{% endif %}</h1>
+            <p>
+                {% if property %}
+                    Update your property's information.
+                {% else %}
+                    Add a new apartment complex or property to start listing units.
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <!-- Step Indicator -->
+    <nav class="wizard-steps">
+        <div class="wizard-step {% if current_step == 1 %}active{% elif current_step > 1 %}completed{% endif %}">
+            <span class="step-circle">{% if current_step > 1 %}✓{% else %}1{% endif %}</span>
+            <span>Property Details</span>
+        </div>
+        <div class="wizard-step {% if current_step == 2 %}active{% elif current_step > 2 %}completed{% endif %}">
+            <span class="step-circle">{% if current_step > 2 %}✓{% else %}2{% endif %}</span>
+            <span>Location</span>
+        </div>
+        <div class="wizard-step {% if current_step == 3 %}active{% elif current_step > 3 %}completed{% endif %}">
+            <span class="step-circle">{% if current_step > 3 %}✓{% else %}3{% endif %}</span>
+            <span>Photos</span>
+        </div>
+        <div class="wizard-step {% if current_step == 4 %}active{% endif %}">
+            <span class="step-circle">4</span>
+            <span>Review</span>
+        </div>
+    </nav>
+
+    <!-- Wizard Form -->
+    <form method="post"
+      enctype="multipart/form-data"
+      action="{% if property %}{% url 'core_listings:property_edit' property.pk %}{% else %}{% url 'core_listings:property_create' %}{% endif %}"
+      class="property-wizard-form">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="form-errors">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="wizard-content">
+            <div class="wizard-step-panel" data-step="1">{% include "core_listings/landlords/forms/steps/step_details.html" %}</div>
+            <div class="wizard-step-panel" data-step="2" hidden>{% include "core_listings/landlords/forms/steps/step_location.html" %}</div>
+            <div class="wizard-step-panel" data-step="3" hidden>{% include "core_listings/landlords/forms/steps/step_photos.html" %}</div>
+            <div class="wizard-step-panel" data-step="4" hidden>{% include "core_listings/landlords/forms/steps/step_review.html" %}</div>
+        </div>
+
+
+        <div class="wizard-actions">
+            <!-- Back -->
+            <button
+                type="button"
+                class="btn btn-secondary wizard-back"
+                onclick="wizardBack()">
+                ← Back
+            </button>
+
+            <!-- Next -->
+            <button
+                type="button"
+                class="btn btn-primary wizard-next"
+                onclick="wizardNext()">
+                Next →
+            </button>
+
+            <!-- Create Property -->
+            <button
+                type="submit"
+                class="btn btn-primary wizard-submit"
+                hidden>
+                {% if property %}Save Changes{% else %}Create Property{% endif %}
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

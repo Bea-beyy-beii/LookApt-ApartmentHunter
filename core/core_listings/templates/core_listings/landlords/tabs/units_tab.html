@@ -1,0 +1,79 @@
+<div class="units-tab">
+
+    <div class="tab-section-header">
+
+        <div>
+            <h2>Units</h2>
+            <p>Manage the units available under this property.</p>
+        </div>
+
+        <a href="{% url 'core_listings:unit_create' property.pk %}"
+           class="btn btn-primary">
+
+            ＋ Add Unit
+
+        </a>
+
+    </div>
+
+
+    <!-- Unit Search -->
+    <div class="units-tab-controls">
+
+        <div class="unit-search">
+
+            <span>⌕</span>
+
+            <input type="text"
+                   id="property-unit-search"
+                   placeholder="Search unit number...">
+
+        </div>
+
+
+        <div class="unit-status-filter">
+
+            <button type="button"
+                    class="unit-filter active"
+                    data-unit-filter="all">
+                All
+            </button>
+
+            <button type="button"
+                    class="unit-filter"
+                    data-unit-filter="available">
+                <span class="green-dot"></span>
+                Available
+            </button>
+
+            <button type="button"
+                    class="unit-filter"
+                    data-unit-filter="occupied">
+                <span class="red-dot"></span>
+                Occupied
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Units -->
+    <div class="full-units-list">
+
+        {% for unit in property.units.all %}
+
+            {% include "core_listings/shared/unit_card.html" with unit=unit %}
+
+        {% empty %}
+
+            {% include "core_listings/shared/empty_state.html" with
+                heading="No units yet"
+                message="Add a unit to start creating listings for this property."
+            %}
+
+        {% endfor %}
+
+    </div>
+
+</div>

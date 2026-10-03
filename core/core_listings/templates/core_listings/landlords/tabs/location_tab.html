@@ -1,0 +1,50 @@
+<div class="location-tab">
+
+    <div class="tab-section-header">
+
+        <div>
+            <h2>Property Location</h2>
+            <p>View the property's location and nearby landmarks.</p>
+        </div>
+
+    </div>
+
+
+    <div class="location-tab-content">
+
+        <div class="location-map-container">
+
+            {% include "core_maps/location_picker.html" with
+                editable=False
+                latitude=property.lat
+                longitude=property.lng
+                radius=5
+            %}
+
+        </div>
+
+
+        <aside class="nearby-landmarks">
+
+            <h3>Nearby Landmarks</h3>
+
+            <p>
+                Places located within the selected radius.
+            </p>
+
+            <div id="nearby-landmarks-list"
+                 data-lat="{{ property.lat }}"
+                 data-lng="{{ property.lng }}"
+                 data-radius="5">
+
+                <div class="landmarks-loading">
+                    Loading nearby landmarks...
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>

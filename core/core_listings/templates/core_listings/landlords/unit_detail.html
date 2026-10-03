@@ -1,0 +1,253 @@
+{% extends "core_landlords/base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ unit.unit_number }} | {{ unit.property.name }} | LookApt
+{% endblock %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core_listings/css/unit_detail.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="unit-detail-page">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+
+        <a href="{% url 'core_listings:listings' %}">
+            My Listings
+        </a>
+
+        <span>›</span>
+
+        <a href="{% url 'core_listings:property_detail' unit.property.pk %}">
+            {{ unit.property.name }}
+        </a>
+
+        <span>›</span>
+
+        <span>
+            {{ unit.unit_number }}
+        </span>
+
+    </div>
+
+
+    <!-- Header -->
+    <div class="unit-detail-header">
+
+        <div>
+
+            <div class="unit-title-row">
+
+                <h1>{{ unit.unit_number }}</h1>
+
+                <span class="status-pill
+                    {% if unit.status == 'available' %}
+                        status-available
+                    {% else %}
+                        status-occupied
+                    {% endif %}
+                ">
+
+                    <span class="status-dot"></span>
+
+                    {{ unit.get_status_display }}
+
+                </span>
+
+            </div>
+
+
+            <p>
+                {{ unit.property.name }}
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'core_listings:unit_edit' unit.pk %}"
+           class="btn btn-primary">
+
+            ✎ Edit Unit
+
+        </a>
+
+    </div>
+
+
+    <!-- Photos -->
+    <section class="unit-photo-strip">
+
+        {% for photo in unit.pictures.all %}
+
+            <div class="unit-detail-photo">
+
+                <img src="{{ photo.image.url }}"
+                     alt="{{ unit.unit_number }}">
+
+            </div>
+
+        {% empty %}
+
+            <div class="unit-photo-placeholder">
+                No unit photos available.
+            </div>
+
+        {% endfor %}
+
+    </section>
+
+
+    <!-- Information -->
+    <section class="unit-information">
+
+        <div class="section-heading">
+
+            <h2>Unit Information</h2>
+
+        </div>
+
+
+        <div class="unit-facts-grid">
+
+            <div class="unit-fact">
+
+                <span>Unit Number</span>
+
+                <strong>
+                    {{ unit.unit_number }}
+                </strong>
+
+            </div>
+
+
+            <div class="unit-fact">
+
+                <span>Area</span>
+
+                <strong>
+                    {{ unit.area_sqm }} sqm
+                </strong>
+
+            </div>
+
+
+            <div class="unit-fact">
+
+                <span>Price</span>
+
+                <strong>
+                    ₱{{ unit.price|floatformat:0 }} / month
+                </strong>
+
+            </div>
+
+
+            <div class="unit-fact">
+
+                <span>Furnishing</span>
+
+                <strong>
+
+                    {% if unit.furnished %}
+                        Furnished
+                    {% else %}
+                        Unfurnished
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+            <div class="unit-fact">
+
+                <span>Air Conditioned</span>
+
+                <strong>
+
+                    {% if unit.air_conditioned %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+            <div class="unit-fact">
+
+                <span>Max Occupants</span>
+
+                <strong>
+                    {{ unit.max_occupants }}
+                </strong>
+
+            </div>
+
+
+            <div class="unit-fact">
+
+                <span>Status</span>
+
+                <strong>
+                    {{ unit.get_status_display }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Description -->
+    <section class="unit-description">
+
+        <h2>Description</h2>
+
+        <p>
+            {{ unit.description|default:"No description has been added yet." }}
+        </p>
+
+    </section>
+
+
+    <!-- Actions -->
+    <div class="unit-detail-actions">
+
+        <a href="{% url 'core_listings:property_detail' unit.property.pk %}"
+           class="btn btn-secondary">
+
+            Cancel
+
+        </a>
+
+
+        <form method="post"
+              action="{% url 'core_listings:unit_delete' unit.pk %}"
+              onsubmit="return confirm('Are you sure you want to delete this unit?');">
+
+            {% csrf_token %}
+
+            <button type="submit"
+                    class="btn btn-danger">
+
+                Delete Unit
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

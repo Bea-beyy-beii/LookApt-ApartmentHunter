@@ -1,0 +1,153 @@
+<section class="wizard-step-content">
+
+    <div class="section-heading">
+
+        <h2>Property Details</h2>
+
+        <p>
+            Provide the basic information about your property.
+        </p>
+
+    </div>
+
+
+    <!-- Complex Name -->
+    <div class="form-group">
+
+        <label for="{{ form.complex_name.id_for_label }}">
+            Complex Name <span>*</span>
+        </label>
+
+        {{ form.complex_name }}
+
+        {% if form.complex_name.errors %}
+            <div class="field-error">
+                {{ form.complex_name.errors }}
+            </div>
+        {% endif %}
+
+    </div>
+
+
+    <!-- Description -->
+    <div class="form-group">
+
+        <label for="{{ form.complex_description.id_for_label }}">
+            Description <span>*</span>
+        </label>
+
+        {{ form.complex_description }}
+
+        {% if form.complex_description.errors %}
+            <div class="field-error">
+                {{ form.complex_description.errors }}
+            </div>
+        {% endif %}
+
+    </div>
+
+
+    <!-- Row -->
+    <div class="form-grid four-columns">
+
+        <!-- Lease Term -->
+        <div class="form-group">
+
+            <label for="{{ form.lease_term.id_for_label }}">
+                Lease Term
+            </label>
+
+            {{ form.lease_term }}
+
+        </div>
+
+
+        <!-- Sex Restriction -->
+        <div class="form-group">
+
+            <label for="{{ form.sex_restriction.id_for_label }}">
+                Sex Restriction
+            </label>
+
+            {{ form.sex_restriction }}
+
+        </div>
+
+
+        <!-- Pet Friendly -->
+        <div class="form-group">
+
+            <label>Pet Friendly</label>
+
+            <label class="toggle-switch">
+
+                {{ form.pet_friendly }}
+
+                <span class="toggle-slider"></span>
+
+                <span class="toggle-label">
+                    Yes
+                </span>
+
+            </label>
+
+        </div>
+
+        <!-- Has Parking Space -->
+        <div class="form-group">
+
+            <label>Has Parking Space</label>
+
+            <label class="toggle-switch">
+
+                {{ form.has_parking_space }}
+
+                <span class="toggle-slider"></span>
+
+                <span class="toggle-label">
+                    Yes
+                </span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- Price Range -->
+    <div class="form-group">
+
+        <label>
+            Price Range <span>*</span>
+        </label>
+
+        <div class="price-range">
+
+            <div class="price-input">
+
+                <span>₱</span>
+
+                {{ form.min_price }}
+
+            </div>
+
+
+            <span class="price-arrow">
+                →
+            </span>
+
+
+            <div class="price-input">
+
+                <span>₱</span>
+
+                {{ form.max_price }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

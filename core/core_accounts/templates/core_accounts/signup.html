@@ -10,41 +10,49 @@
 
     <title>LookApt — Sign Up</title>
 
-
     <!-- Base CSS -->
-
     <link rel="stylesheet" href="{% static 'core/css/base/reset.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/base/colors.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/base/typography.css' %}">
 
-
     <!-- Component CSS -->
-
     <link rel="stylesheet" href="{% static 'core/css/components/branding.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/components/links.css' %}">
 
-
     <!-- Page CSS -->
-
     <link rel="stylesheet" href="{% static 'core/css/pages/login.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/pages/signup.css' %}">
 
 </head>
 
+<script>
+document.querySelector('.login-form').addEventListener('submit', function (e) {
+    var p = document.getElementById('password').value;
+    var c = document.getElementById('confirm_password').value;
+    if (p !== c) {
+        e.preventDefault();
+        var box = document.getElementById('client-error');
+        if (!box) {
+            box = document.createElement('p');
+            box.id = 'client-error';
+            box.className = 'login-error';
+            document.querySelector('.login-form').prepend(box);
+        }
+        box.textContent = 'Passwords do not match.';
+    }
+});
+</script>
 
 <body
     class="signup-page"
     style="--login-background: url({% static 'core/images/noon.png' %});"
 >
 
-
     <main class="login-card">
 
-
         <!-- Branding -->
-
         <header class="branding">
 
             <a href="#" class="brand">
@@ -69,7 +77,6 @@
 
 
         <!-- Sign Up Content -->
-
         <section class="signup-content">
 
             <h1 class="signup-title">
@@ -82,7 +89,6 @@
 
 
             <!-- Sign Up Form -->
-
             <form
                 method="POST"
                 action=""
@@ -91,270 +97,131 @@
 
                 {% csrf_token %}
 
+                {% for message in messages %}
+                    <p class="login-error">{{ message }}</p>
+                {% endfor %}
+
 
                 <!-- First Name -->
-
                 <div class="form-group">
-
-                    <label for="firstname">
-                        First Name
-                    </label>
-
+                    <label for="first_name">First Name</label>
                     <div class="input-wrapper">
-
-                        <span
-                            class="input-icon"
-                            aria-hidden="true"
-                        >
-                            
-                        <img
-                            src="{% static 'core/images/icons/person.png' %}"
-                            alt=""
-                            class="input-icons"
-                        >
-
+                        <span class="input-icon" aria-hidden="true">
+                            <img src="{% static 'core/images/icons/person.png' %}" alt="" class="input-icons">
                         </span>
-
                         <input
                             type="text"
-                            id="firstname"
-                            name="firstname"
+                            id="first_name"
+                            name="first_name"
                             placeholder="First Name"
                             autocomplete="given-name"
+                            value="{{ form_data.first_name }}"
                             required
                         >
-
                     </div>
-
                 </div>
 
 
                 <!-- Last Name -->
-
                 <div class="form-group">
-
-                    <label for="lastname">
-                        Last Name
-                    </label>
-
+                    <label for="last_name">Last Name</label>
                     <div class="input-wrapper">
-
-                        <span
-                            class="input-icon"
-                            aria-hidden="true"
-                        >
-                            <img
-                                src="{% static 'core/images/icons/person.png' %}"
-                                alt=""
-                                class="input-icons"
-                            >
+                        <span class="input-icon" aria-hidden="true">
+                            <img src="{% static 'core/images/icons/person.png' %}" alt="" class="input-icons">
                         </span>
-
                         <input
                             type="text"
-                            id="lastname"
-                            name="lastname"
+                            id="last_name"
+                            name="last_name"
                             placeholder="Last Name"
                             autocomplete="family-name"
+                            value="{{ form_data.last_name }}"
                             required
                         >
-
                     </div>
-
                 </div>
 
 
                 <!-- Phone Number -->
-
                 <div class="form-group">
-
-                    <label for="phone_number">
-                        Phone Number
-                    </label>
-
+                    <label for="phone_number">Phone Number</label>
                     <div class="input-wrapper">
-
-                        <span
-                            class="input-icon"
-                            aria-hidden="true"
-                        >
-                            <img
-                                src="{% static 'core/images/icons/phone.png' %}"
-                                alt=""
-                                class="input-icons"
-                            >
+                        <span class="input-icon" aria-hidden="true">
+                            <img src="{% static 'core/images/icons/phone.png' %}" alt="" class="input-icons">
                         </span>
-
                         <input
                             type="tel"
                             id="phone_number"
                             name="phone_number"
-                            placeholder="09XX XXX XXXX"
+                            placeholder="09XXXXXXXXX"
+                            maxlength="11"
                             autocomplete="tel"
+                            value="{{ form_data.phone_number }}"
                             required
                         >
-
                     </div>
-
                 </div>
 
 
                 <!-- Email -->
-
                 <div class="form-group">
-
-                    <label for="email">
-                        Email
-                    </label>
-
+                    <label for="email">Email</label>
                     <div class="input-wrapper">
-
-                        <span
-                            class="input-icon"
-                            aria-hidden="true"
-                        >
-                            <img
-                                src="{% static 'core/images/icons/inbox.png' %}"
-                                alt=""
-                                class="input-icons"
-                            >
+                        <span class="input-icon" aria-hidden="true">
+                            <img src="{% static 'core/images/icons/inbox.png' %}" alt="" class="input-icons">
                         </span>
-
                         <input
                             type="email"
                             id="email"
                             name="email"
                             placeholder="Email"
                             autocomplete="email"
+                            value="{{ form_data.email }}"
                             required
                         >
-
                     </div>
-
                 </div>
 
 
                 <!-- Sex -->
-
                 <div class="form-group">
-
-                    <label for="sex">
-                        Sex
-                    </label>
-
+                    <label for="sex">Sex</label>
                     <div class="input-wrapper">
-
-                        <span
-                            class="input-icon"
-                            aria-hidden="true"
-                        >
-                            <img
-                                src="{% static 'core/images/icons/gender.png' %}"
-                                alt=""
-                                class="input-icons"
-                            >
+                        <span class="input-icon" aria-hidden="true">
+                            <img src="{% static 'core/images/icons/gender.png' %}" alt="" class="input-icons">
                         </span>
-
-                        <select
-                            id="sex"
-                            name="sex"
-                            required
-                        >
-
-                            <option
-                                value=""
-                                disabled
-                                selected
-                            >
-                                Select Sex
-                            </option>
-
-                            <option value="female">
-                                Female
-                            </option>
-
-                            <option value="male">
-                                Male
-                            </option>
-
+                        <select id="sex" name="sex" required>
+                            <option value="" disabled {% if not form_data.sex %}selected{% endif %}>Select Sex</option>
+                            <option value="female" {% if form_data.sex == 'female' %}selected{% endif %}>Female</option>
+                            <option value="male" {% if form_data.sex == 'male' %}selected{% endif %}>Male</option>
                         </select>
-
                     </div>
-
                 </div>
 
 
                 <!-- Role -->
-
                 <div class="form-group">
-
-                    <label for="role">
-                        Role
-                    </label>
-
+                    <label for="role">Role</label>
                     <div class="input-wrapper">
-
-                        <span
-                            class="input-icon"
-                            aria-hidden="true"
-                        >
-                            <img
-                                src="{% static 'core/images/icons/tag.png' %}"
-                                alt=""
-                                class="input-icons"
-                            >
+                        <span class="input-icon" aria-hidden="true">
+                            <img src="{% static 'core/images/icons/tag.png' %}" alt="" class="input-icons">
                         </span>
-
-                        <select
-                            id="role"
-                            name="role"
-                            required
-                        >
-
-                            <option
-                                value=""
-                                disabled
-                                selected
-                            >
-                                Select Role
-                            </option>
-
-                            <option value="tenant">
-                                Renter
-                            </option>
-
-                            <option value="landlord">
-                                Landlord
-                            </option>
-
+                        <select id="role" name="role" required>
+                            <option value="" disabled {% if not form_data.role %}selected{% endif %}>Select Role</option>
+                            <option value="renter" {% if form_data.role == 'renter' %}selected{% endif %}>Renter</option>
+                            <option value="landlord" {% if form_data.role == 'landlord' %}selected{% endif %}>Landlord</option>
                         </select>
-
                     </div>
-
                 </div>
 
 
                 <!-- Password -->
-
                 <div class="form-group">
-
-                    <label for="password">
-                        Password
-                    </label>
-
+                    <label for="password">Password</label>
                     <div class="input-wrapper">
-
-                        <span
-                            class="input-icon"
-                            aria-hidden="true"
-                        >
-                            <img
-                                src="{% static 'core/images/icons/lock.png' %}"
-                                alt=""
-                                class="input-icons"
-                            >
+                        <span class="input-icon" aria-hidden="true">
+                            <img src="{% static 'core/images/icons/lock.png' %}" alt="" class="input-icons">
                         </span>
-
                         <input
                             type="password"
                             id="password"
@@ -363,41 +230,20 @@
                             autocomplete="new-password"
                             required
                         >
-
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            aria-label="Show password"
-                        >
+                        <button type="button" class="password-toggle" aria-label="Show password">
                             👁
                         </button>
-
                     </div>
-
                 </div>
 
 
                 <!-- Confirm Password -->
-
                 <div class="form-group">
-
-                    <label for="confirm_password">
-                        Confirm Password
-                    </label>
-
+                    <label for="confirm_password">Confirm Password</label>
                     <div class="input-wrapper">
-
-                        <span
-                            class="input-icon"
-                            aria-hidden="true"
-                        >
-                            <img
-                                src="{% static 'core/images/icons/lock.png' %}"
-                                alt=""
-                                class="input-icons"
-                            >
+                        <span class="input-icon" aria-hidden="true">
+                            <img src="{% static 'core/images/icons/lock.png' %}" alt="" class="input-icons">
                         </span>
-
                         <input
                             type="password"
                             id="confirm_password"
@@ -406,26 +252,15 @@
                             autocomplete="new-password"
                             required
                         >
-
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            aria-label="Show password"
-                        >
+                        <button type="button" class="password-toggle" aria-label="Show password">
                             👁
                         </button>
-
                     </div>
-
                 </div>
 
 
                 <!-- Sign Up Button -->
-
-                <button
-                    type="submit"
-                    class="btn btn-primary login-button"
-                >
+                <button type="submit" class="btn btn-primary login-button">
                     SIGN UP
                 </button>
 
@@ -433,24 +268,16 @@
 
 
             <!-- Log In -->
-
             <p class="signup-text">
-
                 Already have an account?
-
-                <a href="{% url 'login' %}">
-                    Log in
-                </a>
-
+                <a href="{% url 'login' %}">Log in</a>
             </p>
 
         </section>
 
     </main>
 
-
     <!-- JavaScript -->
-
     <script src="{% static 'js/components/password-toggle.js' %}"></script>
 
 </body>

@@ -1,0 +1,229 @@
+<article class="property-card"
+         data-property-id="{{ property.pk }}">
+
+    <!-- Property Header -->
+    <div class="property-card-header">
+
+
+        <!-- Thumbnail -->
+        <div class="property-thumbnail">
+
+            {% with photo=property.pictures.first %}
+
+                {% if photo and photo.image %}
+                    <img src="{{ photo.image.url }}"
+                         alt="{{ property.name }}">
+                {% else %}
+                    <div class="property-thumbnail-placeholder">
+                        <span>⌂</span>
+                    </div>
+                {% endif %}
+
+            {% endwith %}
+
+
+            {% if property.pictures.count %}
+                <span class="photo-count">
+                    ▧ {{ property.pictures.count }}
+                </span>
+            {% endif %}
+
+        </div>
+
+
+        <!-- Property Information -->
+        <div class="property-main-info">
+
+            <a href="{% url 'core_listings:property_detail' property.pk %}"
+               class="property-name">
+
+                {{ property.name }}
+
+            </a>
+
+
+            <div class="property-location">
+                <span class="location-icon">⌖</span>
+                {{ property.address }}
+            </div>
+
+
+            <div class="property-stats">
+
+                <div class="property-stat">
+                    <span class="stat-icon">▥</span>
+
+                    <div>
+                        <strong>{{ property.total_units }}</strong>
+                        <small>Units</small>
+                    </div>
+                </div>
+
+
+                <div class="property-stat available">
+                    <span class="stat-icon">▣</span>
+
+                    <div>
+                        <strong>{{ property.available_units }}</strong>
+                        <small>Available</small>
+                    </div>
+                </div>
+
+
+                <div class="property-stat occupied">
+                    <span class="stat-icon">▣</span>
+
+                    <div>
+                        <strong>{{ property.occupied_units }}</strong>
+                        <small>Occupied</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Actions -->
+        <div class="property-card-actions">
+
+            <span class="status-pill
+                {% if property.status == 'active' %}
+                    status-active
+                {% else %}
+                    status-unpublished
+                {% endif %}
+            ">
+
+                <span class="status-dot"></span>
+
+                {{ property.get_status_display }}
+
+            </span>
+
+
+            <a href="{% url 'core_listings:property_edit' property.pk %}"
+               class="edit-property-btn">
+
+                ✎
+                Edit Property
+
+            </a>
+
+
+            <button type="button"
+                    class="more-button"
+                    data-property-menu="{{ property.pk }}"
+                    aria-label="More options">
+
+                ⋮
+
+            </button>
+
+
+            <button type="button"
+                    class="expand-property-button"
+                    data-property-expand="{{ property.pk }}"
+                    aria-label="Expand property">
+
+                <span>⌄</span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Expanded Units -->
+    <div class="property-units"
+         data-property-units="{{ property.pk }}"
+         hidden>
+
+        <div class="property-units-header">
+
+            <h3>
+                Units ({{ property.total_units }})
+            </h3>
+
+
+            <div class="unit-controls">
+
+                <div class="unit-search">
+
+                    <span>⌕</span>
+
+                    <input type="text"
+                           placeholder="Search unit number..."
+                           data-unit-search="{{ property.pk }}">
+
+                </div>
+
+
+                <div class="unit-status-filter">
+
+                    <button type="button"
+                            class="unit-filter active"
+                            data-unit-filter="all">
+
+                        All
+                        <span>{{ property.total_units }}</span>
+
+                    </button>
+
+
+                    <button type="button"
+                            class="unit-filter"
+                            data-unit-filter="available">
+
+                        <span class="green-dot"></span>
+                        Available
+                        <span>{{ property.available_units }}</span>
+
+                    </button>
+
+
+                    <button type="button"
+                            class="unit-filter"
+                            data-unit-filter="occupied">
+
+                        <span class="red-dot"></span>
+                        Occupied
+                        <span>{{ property.occupied_units }}</span>
+
+                    </button>
+
+                </div>
+
+
+                <a href="{% url 'core_listings:unit_create' property.pk %}"
+                   class="add-unit-btn">
+
+                    ＋ Add Unit
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="units-list">
+
+            {% for unit in property.units.all %}
+
+                {% include "core_listings/shared/unit_card.html" with unit=unit %}
+
+            {% empty %}
+
+                <div class="units-empty">
+                    No units have been added to this property yet.
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</article>

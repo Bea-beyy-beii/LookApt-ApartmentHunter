@@ -1,0 +1,76 @@
+{% load static %}
+
+{% block extra_css %}
+
+<link rel="stylesheet"
+      href="{% static 'core_listings/css/listings.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'core_listings/css/search_filter.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'core_listings/css/property_card.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'core_listings/css/unit_card.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'core_listings/css/empty_state.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="listings-page">
+
+    <!-- Header -->
+    <div class="listings-header">
+
+        <div class="listings-heading">
+            <h1>My Listings</h1>
+            <p>View, edit, or create your properties and units here.</p>
+        </div>
+
+        <button type="button" class="add-property-btn" onclick="showPropertyForm()">+ Create Listing</button>
+
+    </div>
+
+
+    {% if properties %}
+
+        {% include "core_listings/includes/search_filter.html" %}
+
+
+        <!-- =================================================
+             PROPERTIES
+             ================================================= -->
+
+        <div class="properties-list">
+
+            {% for property in properties %}
+
+                {% include "core_listings/shared/property_card.html" with property=property %}
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <!-- =================================================
+             EMPTY STATE
+             ================================================= -->
+
+        {% include "core_listings/shared/empty_state.html" with heading="No properties found" message="You haven't added any properties yet. Start by creating your first listing." %}
+
+    {% endif %}
+
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'core_listings/js/listings.js' %}"></script>
+{% endblock %}

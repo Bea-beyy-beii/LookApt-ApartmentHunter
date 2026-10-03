@@ -1,0 +1,82 @@
+<div class="photos-tab">
+
+    <div class="tab-section-header">
+
+        <div>
+            <h2>Property Photos</h2>
+            <p>
+                Manage the photos displayed on this property's listing.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="photo-management-grid">
+
+        {% for photo in property.pictures.all %}
+
+            <div class="managed-photo"
+                 data-photo-id="{{ photo.pk }}">
+
+                <img src="{{ photo.image.url }}"
+                     alt="{{ property.name }} photo {{ forloop.counter }}">
+
+
+                <div class="photo-overlay">
+
+                    <span>
+                        Photo {{ forloop.counter }}
+                    </span>
+
+                    <button type="button"
+                            class="delete-photo-button"
+                            data-photo-id="{{ photo.pk }}">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            {% include "core_listings/shared/empty_state.html" with
+                heading="No photos yet"
+                message="Upload photos to make this property more appealing to renters."
+            %}
+
+        {% endfor %}
+
+
+        {% if property.pictures.count < 10 %}
+
+            <button type="button"
+                    class="upload-photo-card"
+                    id="add-property-photo">
+
+                <span class="upload-plus">＋</span>
+
+                <strong>Add Photo</strong>
+
+                <small>
+                    Up to 10 photos
+                </small>
+
+            </button>
+
+        {% endif %}
+
+    </div>
+
+
+    <input type="file"
+           id="property-photo-input"
+           name="photos"
+           accept="image/png,image/jpeg,image/webp"
+           multiple
+           hidden>
+
+</div>

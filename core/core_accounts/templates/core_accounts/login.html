@@ -10,24 +10,18 @@
 
     <title>LookApt — Log In</title>
 
-
     <!-- Base CSS -->
-
     <link rel="stylesheet" href="{% static 'core/css/base/reset.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/base/colors.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/base/typography.css' %}">
 
-
     <!-- Component CSS -->
-
     <link rel="stylesheet" href="{% static 'core/css/components/branding.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
     <link rel="stylesheet" href="{% static 'core/css/components/links.css' %}">
 
-
     <!-- Page CSS -->
-
     <link rel="stylesheet" href="{% static 'core/css/pages/login.css' %}">
 
 </head>
@@ -38,12 +32,9 @@
     style="--login-background: url({% static 'core/images/noon.png' %});"
 >
 
-
     <main class="login-card">
 
-
         <!-- Branding -->
-
         <header class="branding">
 
             <a href="#" class="brand">
@@ -68,7 +59,6 @@
 
 
         <!-- Login Content -->
-
         <section class="login-content">
 
             <h1 class="login-title">
@@ -81,7 +71,6 @@
 
 
             <!-- Login Form -->
-
             <form
                 method="POST"
                 action=""
@@ -90,13 +79,16 @@
 
                 {% csrf_token %}
 
+                {% for message in messages %}
+                    <p class="login-error">{{ message }}</p>
+                {% endfor %}
 
-                <!-- Username -->
 
+                <!-- Phone number or username -->
                 <div class="form-group">
 
-                    <label for="username">
-                        Username
+                    <label for="identifier">
+                        Phone number or username
                     </label>
 
                     <div class="input-wrapper">
@@ -105,21 +97,18 @@
                             class="input-icon"
                             aria-hidden="true"
                         >
-                            
                             <img
                                 src="{% static 'core/images/icons/person.png' %}"
-                                alt="Looka"
+                                alt=""
                                 class="input-icons"
                             >
-
-
                         </span>
 
                         <input
                             type="text"
-                            id="username"
-                            name="username"
-                            placeholder="Username"
+                            id="identifier"
+                            name="identifier"
+                            placeholder="Phone number or username"
                             autocomplete="username"
                             required
                         >
@@ -130,7 +119,6 @@
 
 
                 <!-- Password -->
-
                 <div class="form-group">
 
                     <label for="password">
@@ -173,7 +161,6 @@
 
 
                 <!-- Forgot Password -->
-
                 <a
                     href="#"
                     class="forgot-password"
@@ -183,7 +170,6 @@
 
 
                 <!-- Login Button -->
-
                 <button
                     type="submit"
                     class="btn btn-primary login-button"
@@ -195,14 +181,12 @@
 
 
             <!-- Divider -->
-
             <div class="login-divider">
                 <span>or</span>
             </div>
 
 
             <!-- Google Login -->
-
             <button
                 type="button"
                 class="btn btn-google google-button"
@@ -221,7 +205,6 @@
 
 
             <!-- Sign Up -->
-
             <p class="signup-text">
 
                 Don't have an account?
@@ -236,9 +219,7 @@
 
     </main>
 
-
     <!-- JavaScript -->
-
     <script src="{% static 'js/components/password-toggle.js' %}"></script>
 
 </body>

@@ -1,0 +1,414 @@
+/* =========================================================
+   UPCOMING CALENDAR WIDGET
+========================================================= */
+
+.upcoming-panel {
+    padding: 20px;
+    background: #fffdf9;
+    border: 1px solid #e4e7ec;
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.upcoming-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.upcoming-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 0;
+
+    color: var(--navy);
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.upcoming-header h2 svg {
+    width: 23px;
+    height: 23px;
+
+    color: var(--navy);
+
+    stroke-width: 1.8;
+}
+
+.upcoming-header a {
+    color: #d58512;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+.upcoming-header a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   APPOINTMENT CARD
+========================================================= */
+
+.appointment-card {
+    display: grid;
+
+    grid-template-columns: 54px 84px minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 20px;
+
+    background: #fffdfb;
+
+    border: 1px solid #d9dee5;
+    border-radius: 20px;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.appointment-date {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    color: var(--navy);
+
+    line-height: 1;
+}
+
+.appointment-date span {
+    margin-bottom: 5px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.appointment-date strong {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.appointment-date small {
+    margin-top: 8px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PROPERTY IMAGE
+========================================================= */
+
+.appointment-image {
+    width: 84px;
+    height: 84px;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+
+    display: block;
+}
+
+.appointment-image--placeholder {
+    display: grid;
+    place-items: center;
+
+    background: #f2eee7;
+
+    color: var(--navy);
+}
+
+.appointment-image--placeholder svg {
+    width: 30px;
+    height: 30px;
+
+    stroke-width: 1.6;
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.appointment-details {
+    min-width: 0;
+}
+
+.appointment-details h3 {
+    margin: 0 0 8px;
+
+    color: var(--navy);
+
+    font-size: 18px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.appointment-time {
+    margin-bottom: 8px;
+
+    color: var(--navy);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.appointment-location {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 9px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.appointment-location svg {
+    flex-shrink: 0;
+
+    width: 17px;
+    height: 17px;
+
+    stroke-width: 1.8;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.appointment-status {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    background: #e7f5eb;
+
+    color: #39845b;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.appointment-status::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.upcoming-empty {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 25px 15px;
+
+    text-align: center;
+
+    border: 1px dashed #d9dee5;
+    border-radius: 16px;
+}
+
+.upcoming-empty strong {
+    color: var(--navy);
+
+    font-size: 14px;
+}
+
+.upcoming-empty span {
+    margin-top: 5px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.schedule-summary {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 17px;
+    padding: 15px 17px;
+
+    background: #f7f2e9;
+
+    border-radius: 17px;
+
+    color: var(--text-primary);
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.schedule-summary:hover {
+    background: #f2ebdf;
+
+    transform: translateY(-1px);
+}
+
+
+/* Calendar icon */
+
+.schedule-summary-icon {
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+}
+
+.schedule-summary-icon svg {
+    width: 27px;
+    height: 27px;
+
+    color: var(--gold);
+
+    stroke-width: 1.8;
+}
+
+
+/* Text */
+
+.schedule-summary-text {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.schedule-summary strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--navy);
+
+    font-size: 14px;
+}
+
+.schedule-summary small {
+    display: block;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* Arrow */
+
+.summary-arrow {
+    width: 19px;
+    height: 19px;
+
+    flex-shrink: 0;
+
+    color: var(--navy);
+
+    stroke-width: 1.8;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .appointment-card {
+        grid-template-columns: 48px 70px minmax(0, 1fr);
+
+        gap: 10px;
+
+        padding: 14px;
+    }
+
+    .appointment-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .appointment-details h3 {
+        font-size: 15px;
+    }
+
+    .appointment-time {
+        font-size: 12px;
+    }
+
+    .appointment-location {
+        font-size: 11px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .appointment-card {
+        grid-template-columns: 48px 70px minmax(0, 1fr);
+    }
+
+}
